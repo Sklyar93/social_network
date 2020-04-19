@@ -5,9 +5,9 @@ import PostsProfile from './components/PostsProfile'
 
 const Profile = () => {
 	return(
-		<div>
+		<div className="profile">
 			<AvatarProfile />
-			<InfoProfile />
+			<InfoProfile name="Валерий" surname="Скляр"/>
 			<PostsProfile />
 		</div>
 	)

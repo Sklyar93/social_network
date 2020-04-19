@@ -4,7 +4,7 @@ import ReactDom from 'react-dom'
 
 const SingIn = () => {
 	return(
-		<div>
+		<div className = "header__singin">
 			<button>Войти</button>
 			<button>Регистрация</button>
 		</div>

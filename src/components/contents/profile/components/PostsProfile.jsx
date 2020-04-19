@@ -1,10 +1,11 @@
 import React from 'react'
+import AddPost from './post/AddPost'
 import Post from './post/Post'
 
 const PostsProfile = () => {
 	return(
-		<div>
-			<input type="textarea" placeholder="Что у Вас нового?" />
+		<div className="profile__postsprofile postsprofile">
+			<AddPost />
 			<Post />
 		</div>
 	)

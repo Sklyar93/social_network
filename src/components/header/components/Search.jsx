@@ -4,7 +4,7 @@ import ReactDom from 'react-dom'
 
 const Search = () => {
 	return(
-		<div>
+		<div className = "header__search">
 			<input type="text" placeholder="Искать" />
 			<button>Найти</button>
 		</div>

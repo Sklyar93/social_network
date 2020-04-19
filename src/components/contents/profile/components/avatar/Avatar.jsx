@@ -1,11 +1,12 @@
 import React from 'react'
+import Ava from './avatar.jpg'
 
 const Avatar = () => {
 	return(
-		<div>
-			<img src=""/>
+		<>
+			<img src ={Ava}/>
 			<button>Изменить изображение</button>
-		</div>
+		</>
 	)
 }
 export default Avatar

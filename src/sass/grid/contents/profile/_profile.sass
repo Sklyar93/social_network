@@ -1,0 +1,19 @@
+.profile
+	display: grid
+	grid-template-areas: "avatar infoprofile infoprofile" "postsprofile postsprofile postsprofile"
+	&__avatar
+		display: grid
+		justify-items: center
+		align-items: center
+		grid-area: avatar
+	&__infoprofile
+		display: grid
+		grid-area: infoprofile
+	&__postsprofile
+		display: grid
+		grid-area: postsprofile
+		.postsprofile
+			&__addpost, &__post
+				display: grid
+				justify-items: center
+				align-items: center

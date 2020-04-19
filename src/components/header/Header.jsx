@@ -4,13 +4,14 @@ import Logo from './components/Logo'
 import Search from './components/Search'
 import SingIn from './components/SingIn'
 
+
 const Header = () => {
 	return(
-		<div>
+		<header className="header">
 			<Logo />
 			<Search />
 			<SingIn />
-		</div>
+		</header>
 	)
 }
 export default Header

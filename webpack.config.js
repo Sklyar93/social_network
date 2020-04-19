@@ -29,8 +29,11 @@ module.exports = {
 	context: path.resolve(__dirname, 'src'), //работать с папкой src
 	mode: 'development',
 	entry: {
-    	main: ['@babel/polyfill','./index.jsx']
+    	main: ['./sass/main.sass','@babel/polyfill','./index.jsx']
   	},
+  	devServer: {
+    	historyApiFallback: true
+	},
 	output: {
 		filename: '[name].[hash].js',
 		path : path.resolve(__dirname, 'dist')	
@@ -57,7 +60,7 @@ module.exports = {
 
 		},
 		{
-			test: /\.scss$/,
+			test: /\.sass$/,
 			use: cssLoaders('sass-loader')
 		},
   		{ 
@@ -83,6 +86,10 @@ module.exports = {
 					plugins : ['@babel/plugin-proposal-class-properties']
 				}
 			}
+		},
+		{
+			test: /\.(png|jpg|svg|gif)$/,
+			use: ['file-loader']
 		}
   	]
   }

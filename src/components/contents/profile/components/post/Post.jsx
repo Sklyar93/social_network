@@ -1,15 +1,13 @@
 import React from 'react'
 
-const Avatar = () => {
+const Post = () => {
 	return(
-		<div>
-			<div>
+			<div className="postsprofile__post post">
 				<h4>Пост 1</h4>
 				<img src=""/>
 				<p>Текст</p>
 				<h5>Дата публикации: </h5>
 			</div>
-		</div>
 	)
 }
-export default Avatar
+export default Post

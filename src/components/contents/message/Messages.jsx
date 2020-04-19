@@ -2,11 +2,17 @@ import React from 'react'
 import Contact from './components/Contact'
 import Message from './components/Message'
 
-const Messages = () => {
+
+
+const Messages = (props) => {
+
+	let contactItems = props.contactsArray.map(c => <Contact id = {c.id} name = {c.name}  />)
+	let messageItems = props.messageArray.map(m => <Message id = {m.id} text = {m.messageText} />)
+
 	return(
 		<div>
-			<Contact />
-			<Message />
+			 {contactItems}
+			 {messageItems}
 		</div>
 	)
 }

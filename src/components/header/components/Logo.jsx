@@ -4,7 +4,7 @@ import ReactDom from 'react-dom'
 
 const Logo = () => {
 	return(
-		<div>
+		<div className="header__logo">
 			Логотип
 		</div>
 	)
