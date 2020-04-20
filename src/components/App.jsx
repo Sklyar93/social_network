@@ -8,16 +8,14 @@ import Messages from './contents/message/Messages'
 
 const App = (props) => {
 	return(
-		<BrowserRouter>
-			<div className="container">
-				<Header />
-				<Navbar />
-				<div className="contents">
-					<Route path='/profile' render = {() => <Profile />}/>
-					<Route path='/messages' render={() => <Messages  messageArray = {props.messageArray} contactsArray={props.contactsArray} />}/>
-				</div>
+		<div className="container">
+			<Header />
+			<Navbar />
+			<div className="contents">
+				<Route path='/profile' render = {() => <Profile addPost = {props.addPost} postsArray = {props.postsArray} />}/>
+				<Route path='/messages' render={() => <Messages  messageArray = {props.messageArray} contactsArray={props.contactsArray} />}/>
 			</div>
-		</BrowserRouter>
+		</div>
 	)
 }
 export default App

@@ -1,11 +1,10 @@
 import React from 'react'
 
-const Post = () => {
+const Post = (props) => {
 	return(
 			<div className="postsprofile__post post">
-				<h4>Пост 1</h4>
-				<img src=""/>
-				<p>Текст</p>
+				<h4>{props.namePost}</h4>
+				<p>{props.textPost}</p>
 				<h5>Дата публикации: </h5>
 			</div>
 	)

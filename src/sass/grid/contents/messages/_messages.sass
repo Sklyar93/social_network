@@ -1,0 +1,15 @@
+.messages
+	display: grid
+	grid-template-areas: "contactsitems messagesitems messagesitems messagesitems" "contactsitems add add add"
+	&__contactsitems
+		display: grid
+		grid-area: contactsitems
+		justify-items: start
+		img
+			width: 4rem
+			height: 4rem
+			border-radius: 50%
+	&__messagesitems
+		grid-area: messagesitems 
+	&__add
+		grid-area: add
