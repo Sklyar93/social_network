@@ -12,7 +12,7 @@ const App = (props) => {
 			<Header />
 			<Navbar />
 			<div className="contents">
-				<Route path='/profile' render = {() => <Profile addPost = {props.addPost} postsArray = {props.postsArray} />}/>
+				<Route path='/profile' render = {() => <Profile addPost = {props.addPost} postsArray = {props.postsArray} newPostChange = {props.newPostChange} newTextChage = {props.newTextChage}/>}/>
 				<Route path='/messages' render={() => <Messages  messageArray = {props.messageArray} contactsArray={props.contactsArray} />}/>
 			</div>
 		</div>
