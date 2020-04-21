@@ -1,4 +1,6 @@
-import {renderEntireTree} from '../Render'
+let renderEntireTree = () =>{
+
+}
 
 let State =  {
 	contactsArray: [
@@ -20,16 +22,19 @@ let State =  {
 	
 }
 
-export let addPost = () =>{
+export const addPost = () =>{
 	let addPost = State.Profile.postsArray.unshift({id: 2, namePost:"добавление поста", textPost: State.Profile.newPostChange})
 	State.Profile.newPostChange = ''
-	renderEntireTree(State)
+	renderEntireTree()
 }
 
-export let newTextChage = (TextChage) => {
+export const newTextChage = (TextChage) => {
 	State.Profile.newPostChange = TextChage
-	renderEntireTree(State)
+	renderEntireTree()
 }
 
+export const subscribe = (observer)=>{
+	renderEntireTree = observer
+} 
 
 export default State
