@@ -6,8 +6,8 @@ import AddMessage from './components/AddMessage'
 const Messages = (props) => {
 	return(
 		<div className="messages">
-			<ContactsItems contactsArray={props.contactsArray} />
-			<MessagesItems messageArray={props.messageArray} />
+			<ContactsItems contactsArray={props.messages.contactsArray} />
+			<MessagesItems messageArray={props.messages.messageArray} />
 			<AddMessage />
 		</div>
 	)

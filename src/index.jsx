@@ -1,22 +1,20 @@
 import React from 'react'
 import ReactDom from 'react-dom'
 import {Route, BrowserRouter} from 'react-router-dom'
-import State from './redux/state'
-import {addPost, newTextChage, subscribe} from './redux/state'
+import store from './redux/state'
 import App from './components/App'
 import 'normalize.css'
 
 
-const renderEntireTree = () =>{
+const renderEntireTree = (state) =>{
 ReactDom.render(
 	<BrowserRouter>
-		<App messageArray = {State.messageArray} contactsArray={State.contactsArray} postsArray = {State.Profile.postsArray} newPostChange = {State.Profile.newPostChange} addPost = {addPost} newTextChage = {newTextChage} />
+		<App state ={store.getState()}  addPost = {store.addPost.bind(store)} newTextChage = {store.newTextChage.bind(store)} />
 	</BrowserRouter>,
 	document.getElementById('root')
 
 )
 }
 
-renderEntireTree()
-
-subscribe(renderEntireTree)
+renderEntireTree(store.getState())
+store.subscriber(renderEntireTree)

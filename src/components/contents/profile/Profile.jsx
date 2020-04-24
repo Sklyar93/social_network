@@ -8,7 +8,7 @@ const Profile = (props) => {
 		<div className="profile">
 			<AvatarProfile />
 			<InfoProfile />
-			<PostsProfile addPost = {props.addPost} postsArray = {props.postsArray} newPostChange = {props.newPostChange}  newTextChage = {props.newTextChage}/>
+			<PostsProfile addPost = {props.addPost} profile = {props.profile}  newTextChage = {props.newTextChage}/>
 		</div>
 	)
 }
