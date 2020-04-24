@@ -12,8 +12,8 @@ const App = (props) => {
 			<Header />
 			<Navbar />
 			<div className="contents">
-				<Route path='/profile' render = {() => <Profile profile = {props.state.profile} addPost = {props.addPost} newTextChage = {props.newTextChage}/>}/>
-				<Route path='/messages' render={() => <Messages  messages = {props.state.messages}/>}/>
+				<Route path='/profile' render = {() => <Profile profile = {props.state.profile} dispatch = {props.dispatch} />}/>
+				<Route path='/messages' render={() => <Messages  messages = {props.state.messages} />}/>
 			</div>
 		</div>
 	)

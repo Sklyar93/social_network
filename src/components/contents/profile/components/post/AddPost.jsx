@@ -4,11 +4,18 @@ const AddPost = (props) => {
 	let newPost = React.createRef()
 	
 	let addPost = () =>{
-		props.addPost(newPost.current.value)	
+		props.dispatch({
+			type: "ADD-POST",
+			addPostText: props.textchagepost
+		})	
 	}
 
 	let newTextChage = () =>{
-		props.newTextChage(newPost.current.value)
+		let text = newPost.current.value
+		props.dispatch({
+			type: "NEW-TEXT-CHAGE", 
+			textChage: text
+		})
 	}
 	
 	return(

@@ -9,7 +9,7 @@ import 'normalize.css'
 const renderEntireTree = (state) =>{
 ReactDom.render(
 	<BrowserRouter>
-		<App state ={store.getState()}  addPost = {store.addPost.bind(store)} newTextChage = {store.newTextChage.bind(store)} />
+		<App state ={store.getState()} dispatch ={store.dispatch.bind(store)} />
 	</BrowserRouter>,
 	document.getElementById('root')
 

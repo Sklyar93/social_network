@@ -23,17 +23,24 @@ let store = {
 		return this._state
 	},
 	_callSubscriber(){},
-	addPost(addPostText){
+	_addPost(addPostText){
 		let addPost = this._state.profile.postsArray.unshift({id: 2, namePost:"добавление поста", textPost: addPostText})
-		this._callSubscriber()
 		this._state.profile.textchagepost = ''
+		this._callSubscriber()	
 	},
-	newTextChage(TextChage){
-		this._state.profile.textchagepost = TextChage
+	_newTextChage(textChage){
+		this._state.profile.textchagepost = textChage
 		this._callSubscriber()
 	},
 	subscriber(observer){
 		this._callSubscriber = observer
+	},
+	dispatch(action){
+		if(action.type === 'ADD-POST'){
+			this._addPost(action.addPostText)
+		}else if(action.type === 'NEW-TEXT-CHAGE'){
+			this._newTextChage(action.textChage)
+		}
 	} 
 
 }
