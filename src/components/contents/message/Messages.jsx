@@ -8,7 +8,7 @@ const Messages = (props) => {
 		<div className="messages">
 			<ContactsItems contactsArray={props.messages.contactsArray} />
 			<MessagesItems messageArray={props.messages.messageArray} />
-			<AddMessage />
+			<AddMessage textChangeMessage = {props.messages.textChangeMessage} dispatch = {props.dispatch}/>
 		</div>
 	)
 }

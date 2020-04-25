@@ -1,26 +1,19 @@
 import React from 'react'
-
+import {actionCreatorAddPost, actionCreatorChangePost} from '../../../../../redux/state'
 const AddPost = (props) => {
-	let newPost = React.createRef()
 	
 	let addPost = () =>{
-		props.dispatch({
-			type: "ADD-POST",
-			addPostText: props.textchagepost
-		})	
+		props.dispatch(actionCreatorAddPost(props.textChangePost))	
 	}
 
-	let newTextChage = () =>{
-		let text = newPost.current.value
-		props.dispatch({
-			type: "NEW-TEXT-CHAGE", 
-			textChage: text
-		})
+	let newTextChage = (e) =>{
+		let textareaValue = e.target.value
+		props.dispatch(actionCreatorChangePost(textareaValue))
 	}
 	
 	return(
 		<div className="postsprofile__addpost addpost">
-			<textarea ref={newPost} onChange={newTextChage} value = {props.textchagepost}/>
+			<textarea  onChange={newTextChage} value = {props.textChangePost}/>
 			<button onClick={addPost}>Добавить запись</button>
 		</div>
 	)
