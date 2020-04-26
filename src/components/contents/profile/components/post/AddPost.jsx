@@ -1,5 +1,5 @@
 import React from 'react'
-import {actionCreatorAddPost, actionCreatorChangePost} from '../../../../../redux/state'
+import {actionCreatorAddPost, actionCreatorChangePost} from '../../../../../redux/profile-reduser'
 const AddPost = (props) => {
 	
 	let addPost = () =>{

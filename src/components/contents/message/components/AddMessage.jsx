@@ -1,5 +1,5 @@
 import React from 'react'
-import {actionCreatorAddMessage, actionCreatorChangeMessage} from '../../../../redux/state'
+import {actionCreatorAddMessage, actionCreatorChangeMessage} from '../../../../redux/message-reduser'
 
 const AddMessage = (props) => {
 
