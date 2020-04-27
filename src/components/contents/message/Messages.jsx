@@ -1,14 +1,14 @@
 import React from 'react'
-import ContactsItems from './components/ContactsItems'
-import MessagesItems from './components/MessagesItems'
-import AddMessage from './components/AddMessage'
+import ContactsItemsComponent from './components/contactsitems/ContactsItemsComponent'
+import MessagesItemsComponent from './components/messageitems/MessagesItemsComponent'
+import AddMessageComponent from './components/addmessage/AddMessageComponent'
 
 const Messages = (props) => {
 	return(
 		<div className="messages">
-			<ContactsItems contactsArray={props.messages.contactsArray} />
-			<MessagesItems messageArray={props.messages.messageArray} />
-			<AddMessage textChangeMessage = {props.messages.textChangeMessage} dispatch = {props.dispatch}/>
+			<ContactsItemsComponent store = {props.store} />
+			<MessagesItemsComponent store = {props.store} />
+			<AddMessageComponent store = {props.store}/>
 		</div>
 	)
 }

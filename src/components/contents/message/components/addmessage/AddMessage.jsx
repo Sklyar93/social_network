@@ -1,15 +1,14 @@
 import React from 'react'
-import {actionCreatorAddMessage, actionCreatorChangeMessage} from '../../../../redux/message-reduser'
 
 const AddMessage = (props) => {
 
 	let addMessage = () =>{
-		props.dispatch(actionCreatorAddMessage(props.textChangeMessage))
+		props.addMessage(props.textChangeMessage)
 	}
 
 	let newTextChangeMessage = (e) =>{
 		let textareaValue = e.target.value
-		props.dispatch(actionCreatorChangeMessage(textareaValue))
+		props.newTextChangeMessage(textareaValue)
 	}
 
 	return(

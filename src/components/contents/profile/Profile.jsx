@@ -1,14 +1,14 @@
 import React from 'react'
-import AvatarProfile from './components/AvatarProfile'
-import InfoProfile from './components/InfoProfile'
-import PostsProfile from './components/PostsProfile'
+import AvatarProfile from './components/avatarprofile/AvatarProfile'
+import InfoProfile from './components/infoprofile/InfoProfile'
+import PostsProfile from './components/postsprofile/PostsProfile'
 
 const Profile = (props) => {
 	return(
 		<div className="profile">
 			<AvatarProfile />
 			<InfoProfile />
-			<PostsProfile  profile = {props.profile}  dispatch = {props.dispatch}/>
+			<PostsProfile store = {props.store}/>
 		</div>
 	)
 }
