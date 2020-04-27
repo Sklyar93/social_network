@@ -1,7 +1,21 @@
 const ADD_MESSAGE = 'ADD-MESSAGE'
 const NEW_TEXT_CHANGE_MESSAGE = 'NEW-TEXT-CHANGE-MESSAGE'
 
-const messageReduser = (state,action) => {
+let initialState = {
+	contactsArray: [
+		{id: 0, name: 'Валерий', img: 'src/Avatar/valera.jpeg'},
+		{id: 1, name: 'Татьяна', img: 'src/Avatar/tanya.jpeg'},
+		{id: 2, name: 'Мистер бин', img: 'src/Avatar/bean.jpeg'}
+	],
+	messageArray: [
+		{id: 0, messageText: 'привет'},
+		{id: 1, messageText: 'как дела?'}
+	],
+	textChangeMessage: 'Введите сообщение'
+}
+
+
+const messageReduser = (state = initialState, action) => {
 	const _addMessage = (addMessageText) =>{
 		let addMessage = state.messageArray.push({
 			id: 3,
@@ -10,14 +24,20 @@ const messageReduser = (state,action) => {
 		state.textChangeMessage = ''
 	}
 	const _newTextChageMessage = (textChangeMessage) =>{
-		state.textChangeMessage = textChangeMessage
-		
+		state.textChangeMessage = textChangeMessage	
 	}
-	if(action.type === ADD_MESSAGE){
-		_addMessage(action.addMessageText)
-	}else if(action.type === NEW_TEXT_CHANGE_MESSAGE){
-		_newTextChageMessage(action.textChangeMessage)
+	
+	switch(action.type){
+		case ADD_MESSAGE: 
+			_addMessage(action.addMessageText)
+			return state
+		case NEW_TEXT_CHANGE_MESSAGE:
+			_newTextChageMessage(action.textChangeMessage)
+			return state
+		default:
+			return state		
 	}
+
 }
 
 

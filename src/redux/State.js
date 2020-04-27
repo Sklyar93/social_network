@@ -26,15 +26,15 @@ let store = {
 	getState(){
 		return this._state
 	},
-	_callSubscriber(){},
+	_callSubscribe(){},
 	
-	subscriber(observer){
-		this._callSubscriber = observer
+	subscribe(observer){
+		this._callSubscribe = observer
 	},
 	dispatch(action){
 		profileReduser(this._state.profile, action) 
 		messageReduser(this._state.messages, action)
-		this._callSubscriber(this._state)
+		this._callSubscribe(this._state)
 	} 
 }
 
