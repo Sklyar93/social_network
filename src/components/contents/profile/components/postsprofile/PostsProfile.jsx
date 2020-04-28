@@ -1,6 +1,6 @@
 import React from 'react'
 import AddPost from './components/addpost/AddPostComponent'
-import Post from './components/post/PostComponent'
+import Post from './components/post/Post'
 
 const PostsProfile = (props) => {
 	let postItem = props.store.getState().profile.postsArray.map(p => <Post textPost = {p.textPost} namePost = {p.namePost} /> )
