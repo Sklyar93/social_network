@@ -1,19 +1,30 @@
 import React from 'react'
 import {actionCreatorAddMessage, actionCreatorChangeMessage} from '../../../../../redux/message-reduser'
+import MyContext from '../../../../../redux/context'
 import AddMessage from './AddMessage'
 
-const AddMessageComponent = (props) => {
+const AddMessageComponent = () => {
 	
-	let textChangeMessage = props.store.getState().messages.textChangeMessage
+	return <MyContext.Consumer>
+	{ (store) =>
+			{	
+				let textChangeMessage = store.getState().messages.textChangeMessage
 
-	let addMessage = () =>{
-		props.store.dispatch(actionCreatorAddMessage(textChangeMessage))
-	}
+				let addMessage = () =>{
+					store.dispatch(actionCreatorAddMessage(textChangeMessage))
+				}				
 
-	let newTextChangeMessage = (text) =>{
-		props.store.dispatch(actionCreatorChangeMessage(text))
-	}
+				let newTextChangeMessage = (text) =>{
+					store.dispatch(actionCreatorChangeMessage(text))
+				}
+				
+				return <AddMessage addMessage = {addMessage} newTextChangeMessage = {newTextChangeMessage} textChangeMessage = {textChangeMessage}/>
+			}
 
-	return <AddMessage addMessage = {addMessage} newTextChangeMessage = {newTextChangeMessage} textChangeMessage = {textChangeMessage}/>
+		}
+	</MyContext.Consumer> 
+	
+	
+
 }
 export default AddMessageComponent

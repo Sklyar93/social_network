@@ -3,12 +3,12 @@ import AvatarProfile from './components/avatarprofile/AvatarProfile'
 import InfoProfile from './components/infoprofile/InfoProfile'
 import PostsProfile from './components/postsprofile/PostsProfile'
 
-const Profile = (props) => {
+const Profile = () => {
 	return(
 		<div className="profile">
 			<AvatarProfile />
 			<InfoProfile />
-			<PostsProfile store = {props.store}/>
+			<PostsProfile />
 		</div>
 	)
 }

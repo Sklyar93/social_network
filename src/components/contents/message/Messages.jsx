@@ -3,12 +3,12 @@ import ContactsItemsComponent from './components/contactsitems/ContactsItemsComp
 import MessagesItemsComponent from './components/messageitems/MessagesItemsComponent'
 import AddMessageComponent from './components/addmessage/AddMessageComponent'
 
-const Messages = (props) => {
+const Messages = () => {
 	return(
 		<div className="messages">
-			<ContactsItemsComponent store = {props.store} />
-			<MessagesItemsComponent store = {props.store} />
-			<AddMessageComponent store = {props.store}/>
+			<ContactsItemsComponent />
+			{<MessagesItemsComponent />} 
+			<AddMessageComponent />
 		</div>
 	)
 }

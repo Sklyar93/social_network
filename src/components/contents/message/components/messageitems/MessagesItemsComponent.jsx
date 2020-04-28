@@ -1,11 +1,24 @@
 import React from 'react'
 import MessagesItems from './MessagesItems'
+import MyContext from '../../../../../redux/context'
 
-const MessagesItemsComponent = (props) => {
 
-	let messageArray = props.store.getState().messages.messageArray
+const MessagesItemsComponent = () => {
+
+	return <MyContext.Consumer>
+		{ (store) => {
+			
+			let messageArray = store.getState().messages.messageArray
+
+			return <MessagesItems messageArray = {messageArray}/>		
+			
+			} 
+		}
+		
+	</MyContext.Consumer>
+	}	
 	
-	return <MessagesItems messageArray = {messageArray}/>
-}
+	
+
 
 export default MessagesItemsComponent

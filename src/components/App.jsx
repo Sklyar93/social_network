@@ -6,14 +6,14 @@ import Navbar from './navbar/Navbar'
 import Profile from './contents/profile/Profile'
 import Messages from './contents/message/Messages'
 
-const App = (props) => {
+const App = () => {
 	return(
 		<div className="container">
 			<Header />
 			<Navbar />
 			<div className="contents">
-				<Route path='/profile' render = {() => <Profile store = {props.store}/>}/>
-				<Route path='/messages' render={() => <Messages store = {props.store} />}/>
+				<Route path='/profile' render = {() => <Profile />}/>
+				<Route path='/messages' render={() => <Messages />}/>
 			</div>
 		</div>
 	)
