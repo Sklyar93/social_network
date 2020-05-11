@@ -1,14 +1,14 @@
 import React from 'react'
 import ContactsItemsComponent from './components/contactsitems/ContactsItemsComponent'
 import MessagesItemsComponent from './components/messageitems/MessagesItemsComponent'
-import AddMessageComponent from './components/addmessage/AddMessageComponent'
+import AddMessagesComponent from './components/addmessage/AddMessagesComponent'
 
 const Messages = () => {
 	return(
 		<div className="messages">
 			<ContactsItemsComponent />
-			{<MessagesItemsComponent />} 
-			<AddMessageComponent />
+			<MessagesItemsComponent />
+			<AddMessagesComponent />
 		</div>
 	)
 }

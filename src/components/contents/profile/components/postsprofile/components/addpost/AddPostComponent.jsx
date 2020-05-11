@@ -1,25 +1,21 @@
 import React from 'react'
+import {connect} from 'react-redux'
 import {actionCreatorAddPost, actionCreatorChangePost} from '../../../../../../../redux/profile-reduser'
-import MyContext from '../../../../../../../redux/context'
 import AddPost from './AddPost'
 
-const AddPostComponent = () => {
+const mapStateToProps = (state) =>({
+	textChangePost: state.profile.textChangePost
+})
 
-	return <MyContext.Consumer>
-		{ (store) => {
-			let textChangePost = store.getState().profile.textChangePost
-			let dispatch = store.dispatch
+const mapDispatchToProps = (dispatch) =>({
+	addPost: (text) => {
+		dispatch(actionCreatorAddPost(text))	
+	},
+	newTextChage: (text) => {
+		dispatch(actionCreatorChangePost(text))		
+	}
+})
 
-			let addPost = (text) =>{
-				dispatch(actionCreatorAddPost(text))	
-			}
+const AddPostComponent = connect(mapStateToProps,mapDispatchToProps)(AddPost)
 
-			let newTextChage = (text) =>{
-				dispatch(actionCreatorChangePost(text))
-			}
-			return <AddPost textChangePost = {textChangePost} addPost = {addPost} newTextChage = {newTextChage} />
-		}
-		}
-	</MyContext.Consumer>
-}
 export default AddPostComponent

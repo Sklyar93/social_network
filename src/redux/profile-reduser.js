@@ -10,21 +10,33 @@ let initialState = {
 }	
 
 const profileReduser = (state = initialState, action) => {
-	const _addPost = (addPostText) =>{
-		let addPost = state.postsArray.unshift({id: 2, namePost:"добавление поста", textPost: addPostText})
-		state.textChangePost = ''
-	}
-	const _newTextChage = (textChange) =>{
-		state.textChangePost = textChange
-	}
+	let newState = {...state}
+
+	newState.postsArray = [...state.postsArray]
+	newState.postsArray.id = {...state.postsArray.id}
+	newState.postsArray.namePost = {...state.postsArray.namePost}
+	newState.postsArray.textPost = {...state.postsArray.textPost}
+
+	const addPost = (addPostText) =>({
+		...state,
+		postsArray: [
+			...state.postsArray,
+			{id: 2, namePost:"добавление поста", textPost: addPostText}
+		],
+		textChangePost: ''
+	})
+	const newTextChage = (textChange) =>({
+		...state,
+		textChangePost: textChange
+	})
 
 	switch(action.type){
-		case ADD_POST:
-			_addPost(action.addPostText)
-			return state
-		case NEW_TEXT_CHANGE_POST: 
-			_newTextChage(action.textChange)
-			return state
+		case ADD_POST: {
+			return addPost(action.addPostText)
+		}		
+		case NEW_TEXT_CHANGE_POST: {
+			return newTextChage(action.textChange)
+		}	
 		default: 
 			return state
 	}	

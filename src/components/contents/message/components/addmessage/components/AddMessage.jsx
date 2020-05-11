@@ -7,6 +7,7 @@ const AddMessage = (props) => {
 	}
 
 	let newTextChangeMessage = (e) =>{
+		console.log(props.textChangeMessage)
 		let textareaValue = e.target.value
 		props.newTextChangeMessage(textareaValue)
 	}

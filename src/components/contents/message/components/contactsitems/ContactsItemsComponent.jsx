@@ -1,18 +1,13 @@
 import React from 'react'
-import ContactsItems from './ContactsItems'
-import MyContext from '../../../../../redux/context'
+import {connect} from 'react-redux'
+import ContactItemComponent from './components/ContactItemComponent'
 
-const ContactsItemsComponent = () => {
-	
-	return <MyContext.Consumer>
-	{ (store) => {
-		let contactsArray = store.getState().messages.contactsArray
-			console.log(contactsArray)
-		return <ContactsItems contactsArray = {contactsArray}/>
-	}
 
-	}
-	</MyContext.Consumer>
-	
-}
+const mapStateToProps = (state) => ({
+	contactsArray: state.messages.contactsArray
+})
+
+
+const ContactsItemsComponent = connect(mapStateToProps)(ContactItemComponent) 
+
 export default ContactsItemsComponent

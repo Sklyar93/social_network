@@ -1,9 +1,8 @@
 import React from 'react'
 
 const AddPost = (props) => {
-	
 	let addPost = () =>{
-		props.addPost(props.textChangePost)	
+		props.addPost(props.textChangePost)
 	}
 
 	let newTextChage = (e) =>{

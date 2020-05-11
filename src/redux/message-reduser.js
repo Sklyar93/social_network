@@ -16,24 +16,29 @@ let initialState = {
 
 
 const messageReduser = (state = initialState, action) => {
-	const _addMessage = (addMessageText) =>{
-		let addMessage = state.messageArray.push({
-			id: 3,
-			messageText: addMessageText
-		})
-		state.textChangeMessage = ''
-	}
-	const _newTextChageMessage = (textChangeMessage) =>{
-		state.textChangeMessage = textChangeMessage	
-	}
+
+	const addMessage = (addMessageText) =>({
+		...state,
+		messageArray: [
+			...state.messageArray,
+			{
+				id: 3,
+				messageText: addMessageText
+			}
+		],
+		textChangeMessage: ''
+	})
+
+	const newTextChageMessage = (textChangeMessage) =>({
+		...state,
+		textChangeMessage: textChangeMessage
+	})
 	
 	switch(action.type){
 		case ADD_MESSAGE: 
-			_addMessage(action.addMessageText)
-			return state
+			return addMessage(action.addMessageText)
 		case NEW_TEXT_CHANGE_MESSAGE:
-			_newTextChageMessage(action.textChangeMessage)
-			return state
+			return newTextChageMessage(action.textChangeMessage)
 		default:
 			return state		
 	}
@@ -48,8 +53,8 @@ export const actionCreatorAddMessage = (text) => ({
 
 
 export const actionCreatorChangeMessage = (text) => ({
-		type: NEW_TEXT_CHANGE_MESSAGE,
-		textChangeMessage: text
+	type: NEW_TEXT_CHANGE_MESSAGE,
+	textChangeMessage: text
 })
 
 export default messageReduser
