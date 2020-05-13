@@ -7,6 +7,7 @@ const Navbar = () => {
 			<ul>
 				<li><NavLink to="/profile">Профиль</NavLink></li>
 				<li><NavLink to="/messages">Сообщения</NavLink></li>
+				<li><NavLink to="/users">Люди</NavLink></li>
 				<li><NavLink to="/music">Музыка</NavLink></li>
 				<li><NavLink to="/video">Видео</NavLink></li>
 				<li><NavLink to="/setting">Настройки</NavLink></li>
