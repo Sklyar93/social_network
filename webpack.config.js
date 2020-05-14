@@ -32,7 +32,8 @@ module.exports = {
     	main: ['./sass/main.sass','@babel/polyfill','./index.jsx']
   	},
   	devServer: {
-    	historyApiFallback: true
+    	historyApiFallback: true,
+    	port: 3000
 	},
 	output: {
 		filename: '[name].[hash].js',
@@ -88,7 +89,7 @@ module.exports = {
 			}
 		},
 		{
-			test: /\.(png|jpg|svg|gif)$/,
+			test: /\.(png|jpg|svg|gif|jpeg)$/,
 			use: ['file-loader']
 		}
   	]

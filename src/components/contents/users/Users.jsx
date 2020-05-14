@@ -1,6 +1,6 @@
 import React from 'react'
 import usersItemsComponent from './components/UsersItemsComponent'
-import {followAC, nofollowAC, setUsersAC} from '../../../redux/users-reduser'
+import {followedAC, nofollowedAC, setUsersAC} from '../../../redux/users-reduser'
 import {connect} from 'react-redux'
 
 
@@ -9,11 +9,11 @@ const mapStateToProps = (state) => ({
 })
 
 const mapDispatchToProps = (dispatch) => ({
-	follow: (userId) =>{
-		dispatch(followAC(userId))
+	followed: (userId) =>{
+		dispatch(followedAC(userId))
 	},
-	nofollow: (userId) =>{
-		dispatch(nofollowAC(userId))
+	nofollowed: (userId) =>{
+		dispatch(nofollowedAC(userId))
 	},
 	setUsers: (users) =>{
 		dispatch(setUsersAC(users))

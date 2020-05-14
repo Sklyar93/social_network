@@ -1,5 +1,5 @@
-const FOLLOW = 'FOLLOW'
-const NOFOLLOW = 'NOFOLLOW'
+const FOLLOWED = 'FOLLOWED'
+const NOFOLLOWED = 'NOFOLLOWED'
 const SETUSER = 'SETUSER'
 
 let initialState =  {
@@ -10,14 +10,14 @@ let initialState =  {
 
 
 const userReduser = (state = initialState, action) => {
-	const follow = (userId) => ({
+	const followed = (userId) => ({
 		...state,
 		usersArray: state.usersArray.map( u =>
 			{
 				if(u.id === action.userId){
 					return {
 						...u,
-						follow: false
+						followed: false
 					}
 				}
 				return u
@@ -25,14 +25,14 @@ const userReduser = (state = initialState, action) => {
 		)		
 	})
 
-	const nofollow = (userId) => ({
+	const nofollowed = (userId) => ({
 		...state,
 		usersArray: state.usersArray.map( u =>
 			{
 				if(u.id === action.userId){
 					return {
 						...u,
-						follow: true
+						followed: true
 					}
 				}
 				return u
@@ -48,10 +48,10 @@ const userReduser = (state = initialState, action) => {
 	}
 
 	switch(action.type){
-		case FOLLOW :
-			return follow(action.userId)
-		case NOFOLLOW : 
-			return nofollow(action.userId)
+		case FOLLOWED :
+			return followed(action.userId)
+		case NOFOLLOWED : 
+			return nofollowed(action.userId)
 		case SETUSER :
 			return setUsers(action.users)
 		default: 
@@ -60,13 +60,13 @@ const userReduser = (state = initialState, action) => {
 }
 
 
-export const followAC = (userId) => ({
-	type: FOLLOW,
+export const followedAC = (userId) => ({
+	type: FOLLOWED,
 	userId
 })
 
-export const nofollowAC = (userId) => ({
-	type: NOFOLLOW,
+export const nofollowedAC = (userId) => ({
+	type: NOFOLLOWED,
 	userId
 })
 

@@ -1,26 +1,27 @@
 import React from 'react'
+import userPhoto from '../../../../Avatar/bean.jpeg';
 
 const UserItem = (props) => {
 
-	const follow = () =>{
-		props.nofollow(props.u.id)
+	const followed = () =>{
+		props.nofollowed(props.u.id)
 	}
 
-	const nofollow = () =>{
-		props.follow(props.u.id)
+	const nofollowed = () =>{
+		props.followed(props.u.id)
 	}
-
+	console.log(props.u.photos.small)
 	return(
 		<div className="user">
 			<div className="user__avatar">
-				<img src = {props.u.avatar} />
-				{props.u.follow ? <button onClick = {nofollow}>Отписаться</button> : <button onClick = {follow}>Подписаться</button>}
+				<img src={props.u.photos.small != null ? props.u.photos.small : userPhoto}/>
+				{props.u.followed ? <button onClick = {nofollowed}>Отписаться</button> : <button onClick = {followed}>Подписаться</button>}
 			</div>
 			<div className="user__info">
-				<h3>{props.u.name} {props.u.surname}</h3>
-				<h4>Возраст: {props.u.age}</h4>
-				<h4>Страна: {props.u.residence.country}</h4>
-				<h4>Город: {props.u.residence.city}</h4>
+				<h3>{props.u.name}</h3>
+				<h4>Возраст:</h4>
+				<h4>Страна: </h4>
+				<h4>Город: </h4>
 			</div>
 		</div>
 	)
