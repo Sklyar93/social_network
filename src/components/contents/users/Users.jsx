@@ -1,6 +1,6 @@
 import React from 'react'
 import usersItemsComponent from './components/UsersItemsComponent'
-import {followAC, nofollowAC} from '../../../redux/users-reduser'
+import {followAC, nofollowAC, setUsersAC} from '../../../redux/users-reduser'
 import {connect} from 'react-redux'
 
 
@@ -14,6 +14,9 @@ const mapDispatchToProps = (dispatch) => ({
 	},
 	nofollow: (userId) =>{
 		dispatch(nofollowAC(userId))
+	},
+	setUsers: (users) =>{
+		dispatch(setUsersAC(users))
 	}
 })
 

@@ -1,7 +1,7 @@
 import React from 'react'
 
 const UserItem = (props) => {
-	
+
 	const follow = () =>{
 		props.nofollow(props.u.id)
 	}

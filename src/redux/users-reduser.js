@@ -1,17 +1,9 @@
 const FOLLOW = 'FOLLOW'
 const NOFOLLOW = 'NOFOLLOW'
+const SETUSER = 'SETUSER'
 
 let initialState =  {
-	usersArray: [
-		{id: 1, follow: true, name: 'Valera', surname: 'Sklyar', age: '26', avatar: 'src/Avatar/valera.jpeg', residence: {
-			country: 'Russia', city: 'Krasnodar'
-		}},
-		{id: 2, follow: false, name: 'Tanya', surname: 'Sinchenko', age: '24', avatar: 'src/Avatar/tanya.jpeg', residence: {
-			country: 'Russia', city: 'Krasnodar'
-		}},
-		{id: 3, follow: false, name: 'Bean', surname: '', age: '46', avatar: 'src/Avatar/bean.jpeg', residence: {
-			country: 'UK', city: 'London'
-		}}
+	usersArray: [	
 	]	
 }
 
@@ -48,11 +40,20 @@ const userReduser = (state = initialState, action) => {
 		)		
 	})
 
+	const setUsers = (users) => {
+		return {	
+			...state,
+			usersArray: [...state.usersArray, ...action.users]
+		}
+	}
+
 	switch(action.type){
 		case FOLLOW :
 			return follow(action.userId)
 		case NOFOLLOW : 
 			return nofollow(action.userId)
+		case SETUSER :
+			return setUsers(action.users)
 		default: 
 			return state
 	}		
@@ -67,6 +68,11 @@ export const followAC = (userId) => ({
 export const nofollowAC = (userId) => ({
 	type: NOFOLLOW,
 	userId
+})
+
+export const setUsersAC = (users) => ({
+	type: SETUSER,
+	users
 })
 
 export default userReduser
