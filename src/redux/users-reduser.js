@@ -1,10 +1,19 @@
 const FOLLOWED = 'FOLLOWED'
 const NOFOLLOWED = 'NOFOLLOWED'
 const SETUSER = 'SETUSER'
+const CURRENT_PAGE = 'CURRENT_PAGE'
+const TOTAL_USER_COUNT = 'TOTAL_USER_COUNT'
+const CURRENT_PAGE_MINYS = 'CURRENT_PAGE_MINYS'
+const CURRENT_PAGE_PLUS = 'CURRENT_PAGE_PLUS'
+const IS_LOADER = 'IS_LOADER'
 
 let initialState =  {
 	usersArray: [	
-	]	
+	],
+	pageSize: 10,
+	totalCount: 0,
+	currentPage: 1,
+	isLoader: true
 }
 
 
@@ -43,9 +52,38 @@ const userReduser = (state = initialState, action) => {
 	const setUsers = (users) => {
 		return {	
 			...state,
-			usersArray: [...state.usersArray, ...action.users]
+			usersArray: [...action.users]
 		}
 	}
+
+	const currentPageChange = (page) => {
+		return {
+			...state,
+			currentPage: action.page
+		}
+	}
+
+	const totalUserCount = (count) =>{
+		return {
+			...state,
+			totalCount: action.count
+		}
+	}
+
+	const currentPageMinys = (page) => ({
+		...state,
+		currentPage: action.page - 10
+	})
+
+	const currentPagePlus = (page) => ({
+		...state,
+		currentPage: action.page + 10
+	})
+
+	const isChangeLoader = (bool) => ({
+		...state,
+		isLoader: action.bool
+	})
 
 	switch(action.type){
 		case FOLLOWED :
@@ -54,6 +92,16 @@ const userReduser = (state = initialState, action) => {
 			return nofollowed(action.userId)
 		case SETUSER :
 			return setUsers(action.users)
+		case CURRENT_PAGE:
+			return currentPageChange(action.page)
+		case TOTAL_USER_COUNT:
+			return totalUserCount(action.count)
+		case CURRENT_PAGE_MINYS: 
+			return currentPageMinys(action.page)
+		case CURRENT_PAGE_PLUS:
+			return currentPagePlus(action.page)
+		case IS_LOADER:
+			return isChangeLoader(action.bool)
 		default: 
 			return state
 	}		
@@ -73,6 +121,31 @@ export const nofollowedAC = (userId) => ({
 export const setUsersAC = (users) => ({
 	type: SETUSER,
 	users
+})
+
+export const currentPageChangeAC = (page) => ({
+	type: CURRENT_PAGE,
+	page
+})
+
+export const totalUserCountAC = (count) => ({
+	type: TOTAL_USER_COUNT,
+	count
+})
+
+export const currentPageMinysAC = (page) => ({
+	type: CURRENT_PAGE_MINYS,
+	page
+})
+
+export const currentPagePlusAC = (page) => ({
+	type: CURRENT_PAGE_PLUS,
+	page
+})
+
+export const isChangeLoaderAC = (bool) => ({
+	type: IS_LOADER,
+	bool
 })
 
 export default userReduser
