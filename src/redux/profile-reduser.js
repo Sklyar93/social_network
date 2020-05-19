@@ -1,33 +1,47 @@
 const ADD_POST = 'ADD-POST'
 const NEW_TEXT_CHANGE_POST = 'NEW-TEXT-CHANGE-POST'
+const SET_PROFILE = 'SET_PROFILE'
+const IS_LOADER = 'IS_LOADER'
 
 let initialState = {
-	postsArray: [
-		{id: 0, namePost: 'Как хранить огурцы?', like: '3', textPost: 'Задача организации, в особенности же постоянное информационно-пропагандистское обеспечение нашей деятельности позволяет выполнять'},
-		{id: 1, namePost: 'Всем привет', like: '2', textPost: 'Задача организации, в особенности же постоянное информационно-пропагандистское'}
+	profileArray: [
 	],
-	textChangePost: 'Добавить пост'
+	postsArray: [
+	],
+	textChangePost: 'Добавить пост',
+	isLoader: true
 }	
 
 const profileReduser = (state = initialState, action) => {
-	let newState = {...state}
-
-	newState.postsArray = [...state.postsArray]
-	newState.postsArray.id = {...state.postsArray.id}
-	newState.postsArray.namePost = {...state.postsArray.namePost}
-	newState.postsArray.textPost = {...state.postsArray.textPost}
 
 	const addPost = (addPostText) =>({
 		...state,
 		postsArray: [
 			...state.postsArray,
-			{id: 2, namePost:"добавление поста", textPost: addPostText}
+			{
+				text: addPostText
+			}
 		],
 		textChangePost: ''
 	})
-	const newTextChage = (textChange) =>({
+	const changePost = (textChangePost) =>({
 		...state,
-		textChangePost: textChange
+		textChangePost
+	})
+
+	const setProfile = (profileArray, textPosts) =>({
+		...state,
+		profileArray: [profileArray],
+		postsArray: [
+		...state.postsArray,
+		{
+			text: textPosts
+		}]
+	})
+
+	const isLoader = (bool) => ({
+		...state,
+		isLoader: bool
 	})
 
 	switch(action.type){
@@ -35,7 +49,13 @@ const profileReduser = (state = initialState, action) => {
 			return addPost(action.addPostText)
 		}		
 		case NEW_TEXT_CHANGE_POST: {
-			return newTextChage(action.textChange)
+			return changePost(action.textChange)
+		}
+		case SET_PROFILE: {
+			return setProfile(action.profile, action.post)
+		}
+		case IS_LOADER: {
+			return isLoader(action.bool)
 		}	
 		default: 
 			return state
@@ -43,14 +63,25 @@ const profileReduser = (state = initialState, action) => {
 }
 
 
-export const actionCreatorAddPost = (text) => ({
+export const addPost = (addPostText) => ({
 	type: ADD_POST,
-	addPostText: text
+	addPostText
 })
 
-export const actionCreatorChangePost = (text) => ({
+export const changePost = (textChange) => ({
 	type: NEW_TEXT_CHANGE_POST,
-	textChange: text
+	textChange
+})
+
+export const setProfile = (profile,post) => ({
+	type: SET_PROFILE,
+	profile,
+	post	
+})
+
+export const isLoader = (bool) => ({
+	type: IS_LOADER,
+	bool
 })
 
 export default profileReduser

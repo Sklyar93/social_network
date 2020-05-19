@@ -108,42 +108,42 @@ const userReduser = (state = initialState, action) => {
 }
 
 
-export const followedAC = (userId) => ({
+export const followed = (userId) => ({
 	type: FOLLOWED,
 	userId
 })
 
-export const nofollowedAC = (userId) => ({
+export const nofollowed = (userId) => ({
 	type: NOFOLLOWED,
 	userId
 })
 
-export const setUsersAC = (users) => ({
+export const setUsers = (users) => ({
 	type: SETUSER,
 	users
 })
 
-export const currentPageChangeAC = (page) => ({
+export const currentPageChange = (page) => ({
 	type: CURRENT_PAGE,
 	page
 })
 
-export const totalUserCountAC = (count) => ({
+export const totalUserCount = (count) => ({
 	type: TOTAL_USER_COUNT,
 	count
 })
 
-export const currentPageMinysAC = (page) => ({
+export const currentPageMinys = (page) => ({
 	type: CURRENT_PAGE_MINYS,
 	page
 })
 
-export const currentPagePlusAC = (page) => ({
+export const currentPagePlus = (page) => ({
 	type: CURRENT_PAGE_PLUS,
 	page
 })
 
-export const isChangeLoaderAC = (bool) => ({
+export const isChangeLoader = (bool) => ({
 	type: IS_LOADER,
 	bool
 })

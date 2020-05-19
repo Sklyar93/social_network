@@ -7,12 +7,11 @@ const AddPost = (props) => {
 
 	let newTextChage = (e) =>{
 		let textareaValue = e.target.value
-		props.newTextChage(textareaValue)
+		props.changePost(textareaValue)
 	}
-	
 	return(
 		<div className="postsprofile__addpost addpost">
-			<textarea onChange={newTextChage} value = {props.textChangePost}/>
+			<textarea onChange={newTextChage} value = {props.textChangePost} />
 			<button onClick={addPost}>Добавить запись</button>
 		</div>
 	)

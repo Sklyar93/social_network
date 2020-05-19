@@ -1,12 +1,18 @@
 import React from 'react'
-import Ava from './avatar.jpg'
+import noneAvatar from '../../../../../../img/grid/noneAvatar.png'
+import Loader from '../../../../../../img/grid/Loader.gif'
 
-const Avatar = () => {
+const Avatar = (props) => {
 	return(
 		<>
-			<img src ={Ava}/>
-			<button>Изменить изображение</button>
+			{
+			props.state.profileArray.map(s =>
+			props.state.isLoader ? <Loader /> : 	
+			<img src = {s.photos.small != null ? s.photos.small : noneAvatar} />
+			)
+			}
 		</>
 	)
+
 }
 export default Avatar

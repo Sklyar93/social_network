@@ -1,11 +1,11 @@
 import React from 'react'
 import {connect} from 'react-redux'
-import PostComponent from './components/PostComponent'
+import Post from './Post'
 
- 
 const mapStateToProps = (state) => ({
 	postsArray: state.profile.postsArray	
 })	 
 
-const PostsComponent = connect(mapStateToProps)(PostComponent)
+const PostsComponent = connect(mapStateToProps)(Post)
+
 export default PostsComponent

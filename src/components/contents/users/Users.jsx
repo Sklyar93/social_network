@@ -1,13 +1,13 @@
 import React from 'react'
 import {
-			followedAC, 
-			nofollowedAC, 
-			setUsersAC, 
-			currentPageChangeAC, 
-			totalUserCountAC, 
-			currentPageMinysAC, 
-			currentPagePlusAC, 
-			isChangeLoaderAC
+			followed, 
+			nofollowed, 
+			setUsers, 
+			currentPageChange, 
+			totalUserCount, 
+			currentPageMinys, 
+			currentPagePlus, 
+			isChangeLoader
 		} 
 	from '../../../redux/users-reduser'
 import {connect} from 'react-redux'
@@ -65,34 +65,17 @@ const mapStateToProps = (state) => ({
 	users: state.users
 })
 
-const mapDispatchToProps = (dispatch) => ({
-	followed: (userId) =>{
-		dispatch(followedAC(userId))
-	},
-	nofollowed: (userId) =>{
-		dispatch(nofollowedAC(userId))
-	},
-	setUsers: (users) =>{
-		dispatch(setUsersAC(users))
-	},
-	currentPageChange: (page) =>{
-		dispatch(currentPageChangeAC(page))
-	},
-	totalUserCount: (count) => {
-		dispatch(totalUserCountAC(count))
-	},
-	currentPageMinys: (page) => {
-		dispatch(currentPageMinysAC(page))
-	},
-	currentPagePlus: (page) => {
-		dispatch(currentPagePlusAC(page))
-	},
-	isChangeLoader: (bool) => {
-		dispatch(isChangeLoaderAC(bool))
-	}
-
-})
-
-const Users = connect(mapStateToProps, mapDispatchToProps)(UsersItemsApiComponent)
+const Users = connect(mapStateToProps, 
+{
+	followed, 
+	nofollowed, 
+	setUsers, 
+	currentPageChange, 
+	totalUserCount, 
+	currentPageMinys, 
+	currentPagePlus, 
+	isChangeLoader
+}
+)(UsersItemsApiComponent)
 
 export default Users
