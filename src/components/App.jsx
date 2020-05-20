@@ -13,7 +13,7 @@ const App = () => {
 			<Header />
 			<Navbar />
 			<div className="contents">
-				<Route path='/profile' render = {() => <ProfileComponent />}/>
+				<Route path='/profile/:userId?' render = {() => <ProfileComponent />}/>
 				<Route path='/messages' render={() => <Messages />}/>
 				<Route path='/users' render={() => <Users />} />
 			</div>
