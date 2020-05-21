@@ -19,6 +19,7 @@ let initialState =  {
 
 
 const userReduser = (state = initialState, action) => {
+	
 	const followed = (userId) => ({
 		...state,
 		usersArray: state.usersArray.map( u =>
@@ -26,7 +27,7 @@ const userReduser = (state = initialState, action) => {
 				if(u.id === action.userId){
 					return {
 						...u,
-						followed: false
+						followed: true
 					}
 				}
 				return u
@@ -41,7 +42,7 @@ const userReduser = (state = initialState, action) => {
 				if(u.id === action.userId){
 					return {
 						...u,
-						followed: true
+						followed: false
 					}
 				}
 				return u

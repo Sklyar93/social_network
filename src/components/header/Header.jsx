@@ -5,12 +5,12 @@ import Search from './components/Search'
 import SingIn from './components/SingIn'
 
 
-const Header = () => {
+const Header = (props) => {
 	return(
 		<header className="header">
 			<Logo />
 			<Search />
-			<SingIn />
+			<SingIn auth = {props}/>
 		</header>
 	)
 }

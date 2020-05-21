@@ -6,14 +6,14 @@ import Loader from '../../../grid/loader/Loader'
 const UsersItems = (props) => {
 
 	const followed = (id) =>{
-		console.log(id)
-		return props.nofollowed(id)
+		console.log('подписка' + id)
+		return props.followed(id)
 	}
 
 	const nofollowed = (id) =>{
-		props.followed(id)
+		console.log('отписка' + id)
+		props.nofollowed(id)
 	}
-	
 	return(
 		<>
 			{props.users.usersArray.map(u => 

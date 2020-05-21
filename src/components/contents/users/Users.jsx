@@ -23,9 +23,9 @@ class UsersItemsApiComponent extends React.Component{
 		axios
 		.get(`https://social-network.samuraijs.com/api/1.0/users?count=${this.props.users.pageSize}`)
 		.then(response => {
-			this.props.isChangeLoader(false)
 			this.props.setUsers(response.data.items)
 			this.props.totalUserCount(response.data.totalCount)
+			this.props.isChangeLoader(false)
 		})
 	}
 
@@ -35,10 +35,44 @@ class UsersItemsApiComponent extends React.Component{
 		axios
 		.get(`https://social-network.samuraijs.com/api/1.0/users?count=${this.props.users.pageSize}&page=${page}`)
 		.then(response => {
-			this.props.isChangeLoader(false)
-			this.props.setUsers(response.data.items)			
+			this.props.setUsers(response.data.items)
+			this.props.isChangeLoader(false)			
 		})
 	}
+
+	followed = (id) => {
+		console.log(`https://social-network.samuraijs.com/api/1.0/follow/${id}`)
+		this.props.followed(id)
+		axios
+		.post(
+			`https://social-network.samuraijs.com/api/1.0/follow/${id}`,
+			{},
+			{
+				withCredentials: true,
+				headers: {
+					"API-KEY": ""
+				}
+			}
+		)
+		
+	}
+
+	nofollowed = (id) => {
+		console.log(`https://social-network.samuraijs.com/api/1.0/follow/${id}`)
+		this.props.nofollowed(id)
+		axios
+		.delete(
+			`https://social-network.samuraijs.com/api/1.0/follow/${id}`,
+			{
+				withCredentials: true,
+				headers: {
+					"API-KEY": ""
+				}
+			}
+		)
+		
+	}
+
 
 	render(){
 		return(
@@ -52,8 +86,8 @@ class UsersItemsApiComponent extends React.Component{
 			/>
 			<UsersItems 
 				users = {this.props.users} 
-				followed = {this.props.followed}
-				nofollowed = {this.props.nofollowed}
+				followed = {this.followed}
+				nofollowed = {this.nofollowed}
 				isLoader = {this.props.users.isLoader}
 			/>
 		</div>

@@ -2,11 +2,25 @@ import React from 'react'
 import ReactDom from 'react-dom'
 
 
-const SingIn = () => {
+const SingIn = (props) => {
+	
 	return(
 		<div className = "header__singin">
-			<button>Войти</button>
-			<button>Регистрация</button>
+		{props.auth.isAuth 
+
+			? 
+			<>
+				<div>{props.auth.login}</div>
+				<button>Выйти</button>
+			</>
+			
+			:
+			
+			<>
+				<button>Войти</button>
+				<button>Регистрация</button>
+			</>
+		}
 		</div>
 	)
 }
