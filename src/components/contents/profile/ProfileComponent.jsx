@@ -3,6 +3,7 @@ import * as axios from 'axios'
 import {connect} from 'react-redux'
 import {withRouter} from 'react-router-dom'
 import {setProfile, addPost, changePost, isLoader} from '../../../redux/profile-reduser'
+import {getApi} from '../../../api/api'
 import Profile from './Profile'
 
 class ProfileComponentApi extends React.Component{
@@ -11,10 +12,10 @@ class ProfileComponentApi extends React.Component{
 		this.props.isLoader(true)
 		let userId
 		this.props.match.params.userId ? userId = this.props.match.params.userId : userId = 2
-		axios
-		.get(`https://social-network.samuraijs.com/api/1.0/profile/`+userId)
-		.then(response => {
-			this.props.setProfile(response.data, response.data.lookingForAJobDescription)
+
+		getApi.Profile(userId)
+		.then(data => {
+			this.props.setProfile(data, data.lookingForAJobDescription)
 			this.props.isLoader(false)	
 		})
 	}

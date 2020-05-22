@@ -10,6 +10,7 @@ import {
 			isChangeLoader
 		} 
 	from '../../../redux/users-reduser'
+import {getApi, postApi, deleteApi} from '../../../api/api'	
 import {connect} from 'react-redux'
 import * as axios from 'axios'
 import UsersItems from './components/UsersItems'
@@ -19,58 +20,43 @@ import UsersPages from './components/UsersPages'
 class UsersItemsApiComponent extends React.Component{
 	
 	componentDidMount(){
+		console.log(this.props.users.pageSize)
 		this.props.isChangeLoader(true)
-		axios
-		.get(`https://social-network.samuraijs.com/api/1.0/users?count=${this.props.users.pageSize}`)
-		.then(response => {
-			this.props.setUsers(response.data.items)
-			this.props.totalUserCount(response.data.totalCount)
+		
+		getApi.Users(this.props.users.pageSize)
+		.then(data => {
+			this.props.setUsers(data.items)
+			this.props.totalUserCount(data.totalCount)
 			this.props.isChangeLoader(false)
-		})
+		}
+		)
 	}
 
 	currentPageChange = (page) => {
 		this.props.isChangeLoader(true)
 		this.props.currentPageChange(page)
-		axios
-		.get(`https://social-network.samuraijs.com/api/1.0/users?count=${this.props.users.pageSize}&page=${page}`)
-		.then(response => {
-			this.props.setUsers(response.data.items)
+		
+		getApi.Users(this.props.users.pageSize, page)
+		.then(data => {
+			this.props.setUsers(data.items)
 			this.props.isChangeLoader(false)			
 		})
 	}
 
 	followed = (id) => {
 		console.log(`https://social-network.samuraijs.com/api/1.0/follow/${id}`)
+		
 		this.props.followed(id)
-		axios
-		.post(
-			`https://social-network.samuraijs.com/api/1.0/follow/${id}`,
-			{},
-			{
-				withCredentials: true,
-				headers: {
-					"API-KEY": ""
-				}
-			}
-		)
+		
+		postApi.Users(id)
 		
 	}
 
 	nofollowed = (id) => {
 		console.log(`https://social-network.samuraijs.com/api/1.0/follow/${id}`)
 		this.props.nofollowed(id)
-		axios
-		.delete(
-			`https://social-network.samuraijs.com/api/1.0/follow/${id}`,
-			{
-				withCredentials: true,
-				headers: {
-					"API-KEY": ""
-				}
-			}
-		)
 		
+		deleteApi.Users(id)	
 	}
 
 
