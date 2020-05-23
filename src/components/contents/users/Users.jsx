@@ -11,9 +11,7 @@ import {
 			getNoFollow
 		} 
 	from '../../../redux/users-reduser'
-import {getApi, postApi, deleteApi} from '../../../api/api'	
 import {connect} from 'react-redux'
-import * as axios from 'axios'
 import UsersItems from './components/UsersItems'
 import UsersPages from './components/UsersPages'
 

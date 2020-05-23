@@ -1,5 +1,4 @@
 import React from 'react'
-import * as axios from 'axios'
 import {connect} from 'react-redux'
 import {withRouter} from 'react-router-dom'
 import {getProfile} from '../../../redux/profile-reduser'
@@ -14,7 +13,7 @@ class ProfileComponentApi extends React.Component{
 	render(){
 		return(
 			<>
-				<Profile />
+				<Profile auth = {this.props.auth}/>
 			</>
 		)
 	}
@@ -22,7 +21,8 @@ class ProfileComponentApi extends React.Component{
 }
 
 const mapStateToProps = (state) => ({
-	state: state.profile
+	state: state.profile,
+	auth: state.auth.isAuth
 })
 
 const ProfileWR = withRouter(ProfileComponentApi)
