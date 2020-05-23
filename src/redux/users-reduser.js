@@ -6,6 +6,7 @@ const TOTAL_USER_COUNT = 'TOTAL_USER_COUNT'
 const CURRENT_PAGE_MINYS = 'CURRENT_PAGE_MINYS'
 const CURRENT_PAGE_PLUS = 'CURRENT_PAGE_PLUS'
 const IS_LOADER = 'IS_LOADER'
+const FOLLOWED_DISABLED = 'FOLLOWED_DISABLED'
 
 let initialState =  {
 	usersArray: [	
@@ -13,7 +14,8 @@ let initialState =  {
 	pageSize: 10,
 	totalCount: 0,
 	currentPage: 1,
-	isLoader: true
+	isLoader: true,
+	followDisabledArray: []
 }
 
 
@@ -86,6 +88,15 @@ const userReduser = (state = initialState, action) => {
 		isLoader: action.bool
 	})
 
+	const followDisabled = (id, bool) => ({
+			...state,
+			followDisabledArray: action.bool 
+			?
+			[...state.followDisabledArray, action.id]
+			: 
+			state.followDisabledArray.filter(id => id != action.id)
+		})
+
 	switch(action.type){
 		case FOLLOWED :
 			return followed(action.userId)
@@ -103,6 +114,8 @@ const userReduser = (state = initialState, action) => {
 			return currentPagePlus(action.page)
 		case IS_LOADER:
 			return isChangeLoader(action.bool)
+		case FOLLOWED_DISABLED: 
+			return followDisabled(action.id, action.bool)
 		default: 
 			return state
 	}		
@@ -146,6 +159,12 @@ export const currentPagePlus = (page) => ({
 
 export const isChangeLoader = (bool) => ({
 	type: IS_LOADER,
+	bool
+})
+
+export const followDisabled = (id, bool) => ({
+	type: FOLLOWED_DISABLED,
+	id,
 	bool
 })
 

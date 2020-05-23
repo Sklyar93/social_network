@@ -14,6 +14,7 @@ const UsersItems = (props) => {
 		console.log('отписка' + id)
 		props.nofollowed(id)
 	}
+
 	return(
 		<>
 			{props.users.usersArray.map(u => 
@@ -25,7 +26,7 @@ const UsersItems = (props) => {
 							<img src={u.photos.small != null ? u.photos.small : noneAvatar}/>
 						</NavLink>
 						}
-						{u.followed ? <button onClick = {() => {nofollowed(u.id)}}>Отписаться</button> : <button onClick = {() => {followed(u.id)}}>Подписаться</button>}
+						{u.followed ? <button disabled = {props.users.followDisabledArray.some(id => id === u.id)} onClick = {() => {nofollowed(u.id)}}>Отписаться</button> : <button disabled = {props.users.followDisabledArray.some(id => id === u.id)} onClick = {() => {followed(u.id)}}>Подписаться</button>}
 					</div>
 					<div className="user__info">
 						<h3>{u.name}</h3>
