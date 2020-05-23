@@ -1,14 +1,14 @@
 import React from 'react'
-import {
-			followed, 
-			nofollowed, 
-			setUsers, 
+import { 
 			currentPageChange, 
 			totalUserCount, 
 			currentPageMinys, 
 			currentPagePlus, 
 			isChangeLoader,
-			followDisabled
+			followDisabled,
+			getUsers,
+			getFollow,
+			getNoFollow
 		} 
 	from '../../../redux/users-reduser'
 import {getApi, postApi, deleteApi} from '../../../api/api'	
@@ -21,50 +21,19 @@ import UsersPages from './components/UsersPages'
 class UsersItemsApiComponent extends React.Component{
 	
 	componentDidMount(){
-		this.props.isChangeLoader(true)
-		
-		getApi.Users(this.props.users.pageSize)
-		.then(data => {
-			this.props.setUsers(data.items)
-			this.props.totalUserCount(data.totalCount)
-			this.props.isChangeLoader(false)
-		}
-		)
+		this.props.getUsers(this.props.users.pageSize, 1)
 	}
 
 	currentPageChange = (page) => {
-		this.props.isChangeLoader(true)
-		this.props.currentPageChange(page)
-		
-		getApi.Users(this.props.users.pageSize, page)
-		.then(data => {
-			this.props.setUsers(data.items)
-			this.props.isChangeLoader(false)			
-		})
+		this.props.getUsers(this.props.users.pageSize, page)
 	}
 
 	followed = (id) => {
-		this.props.followDisabled(id, true)
-		postApi.Users(id)
-		.then(response => {
-		console.log(response)
-            if (response.data.resultCode == 0) {
-                this.props.followed(id) 
-            }
-            this.props.followDisabled(id, false)
-        })
-		
+		this.props.getFollow(id)	
 	}
 
 	nofollowed = (id) => {
-		this.props.followDisabled(id, true)
-		deleteApi.Users(id)
-		.then(response => {
-            if (response.data.resultCode == 0) {
-                this.props.nofollowed(id) 
-            }
-            this.props.followDisabled(id, false)
-        })
+		this.props.getNoFollow(id)
 	}
 
 
@@ -95,15 +64,15 @@ const mapStateToProps = (state) => ({
 
 const Users = connect(mapStateToProps, 
 {
-	followed, 
-	nofollowed, 
-	setUsers, 
 	currentPageChange, 
 	totalUserCount, 
 	currentPageMinys, 
 	currentPagePlus, 
 	isChangeLoader,
-	followDisabled
+	followDisabled,
+	getUsers,
+	getFollow,
+	getNoFollow
 }
 )(UsersItemsApiComponent)
 

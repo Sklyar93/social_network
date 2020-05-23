@@ -1,3 +1,5 @@
+import {getApi} from '../api/api'
+
 const ADD_POST = 'ADD-POST'
 const NEW_TEXT_CHANGE_POST = 'NEW-TEXT-CHANGE-POST'
 const SET_PROFILE = 'SET_PROFILE'
@@ -83,5 +85,16 @@ export const isLoader = (bool) => ({
 	type: IS_LOADER,
 	bool
 })
+
+export const getProfile = (userId = 2) => {
+	return (dispatch) => {
+		dispatch(isLoader(true))
+		getApi.Profile(userId)
+		.then(data => {
+			dispatch(setProfile(data, data.lookingForAJobDescription))
+			dispatch(isLoader(false))	
+		})
+	}
+}
 
 export default profileReduser

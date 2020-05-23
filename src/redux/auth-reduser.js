@@ -1,3 +1,4 @@
+import {getApi} from '../api/api'
 const SET_USER_AUTH = 'SET_USER_AUTH'
 
 let  initialState = {
@@ -36,5 +37,15 @@ export const setUserAuth = (id, login, email,isAuth) => ({
 	isAuth
 
 })
+
+export const getUserAuth = () => {
+	return (dispatch) => {
+		getApi.Header()
+		.then(data => {
+			let {id, login, email} = data.data
+			dispatch(setUserAuth(id, login, email, true))	
+		})
+	}
+}
 
 export default authReduser

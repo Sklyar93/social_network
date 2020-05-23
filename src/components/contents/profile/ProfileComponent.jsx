@@ -2,22 +2,13 @@ import React from 'react'
 import * as axios from 'axios'
 import {connect} from 'react-redux'
 import {withRouter} from 'react-router-dom'
-import {setProfile, addPost, changePost, isLoader} from '../../../redux/profile-reduser'
-import {getApi} from '../../../api/api'
+import {getProfile} from '../../../redux/profile-reduser'
 import Profile from './Profile'
 
 class ProfileComponentApi extends React.Component{
 	
 	componentDidMount(){
-		this.props.isLoader(true)
-		let userId
-		this.props.match.params.userId ? userId = this.props.match.params.userId : userId = 2
-
-		getApi.Profile(userId)
-		.then(data => {
-			this.props.setProfile(data, data.lookingForAJobDescription)
-			this.props.isLoader(false)	
-		})
+		this.props.getProfile(this.props.match.params.userId)
 	}
 
 	render(){
@@ -35,6 +26,5 @@ const mapStateToProps = (state) => ({
 })
 
 const ProfileWR = withRouter(ProfileComponentApi)
-const ProfileComponent =  connect(mapStateToProps,
-{setProfile, addPost, changePost, isLoader})(ProfileWR)
+const ProfileComponent = connect(mapStateToProps, {getProfile})(ProfileWR)
 export default ProfileComponent

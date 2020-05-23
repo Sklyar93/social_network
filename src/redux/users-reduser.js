@@ -1,3 +1,4 @@
+import {getApi, postApi, deleteApi} from '../api/api'
 const FOLLOWED = 'FOLLOWED'
 const NOFOLLOWED = 'NOFOLLOWED'
 const SETUSER = 'SETUSER'
@@ -17,8 +18,6 @@ let initialState =  {
 	isLoader: true,
 	followDisabledArray: []
 }
-
-
 
 const userReduser = (state = initialState, action) => {
 	
@@ -89,13 +88,13 @@ const userReduser = (state = initialState, action) => {
 	})
 
 	const followDisabled = (id, bool) => ({
-			...state,
-			followDisabledArray: action.bool 
-			?
-			[...state.followDisabledArray, action.id]
-			: 
-			state.followDisabledArray.filter(id => id != action.id)
-		})
+		...state,
+		followDisabledArray: action.bool 
+		?
+		[...state.followDisabledArray, action.id]
+		: 
+		state.followDisabledArray.filter(id => id != action.id)
+	})
 
 	switch(action.type){
 		case FOLLOWED :
@@ -167,5 +166,45 @@ export const followDisabled = (id, bool) => ({
 	id,
 	bool
 })
+
+export const getUsers = (pageSize, page) => {
+	return (dispatch) => {
+		dispatch(isChangeLoader(true))
+		dispatch(currentPageChange(page))
+		getApi.Users(pageSize, page)
+		.then(data => {
+			dispatch(setUsers(data.items))
+			dispatch(totalUserCount(data.totalCount))
+			dispatch(isChangeLoader(false))
+		}
+		)
+	}
+}
+
+export const getFollow = (id) => {
+	return (dispatch) => {
+		dispatch(followDisabled(id, true))
+		postApi.Users(id)
+		.then(response => {
+            if (response.data.resultCode == 0) {
+                dispatch(followed(id))
+            }
+            dispatch(followDisabled(id, false))
+        })
+	}
+}
+
+export const getNoFollow = (id) => {
+	return (dispatch) => {
+		dispatch(followDisabled(id, true))
+		deleteApi.Users(id)
+		.then(response => {
+            if (response.data.resultCode == 0) {
+                dispatch(nofollowed(id))
+            }
+            dispatch(followDisabled(id, false))
+        })
+	}
+}
 
 export default userReduser
