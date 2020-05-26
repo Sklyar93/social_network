@@ -1,19 +1,22 @@
 import React from 'react'
 import {connect} from 'react-redux'
-import {withRouter} from 'react-router-dom'
+import {withRouter, Redirect} from 'react-router-dom'
 import {getProfile} from '../../../redux/profile-reduser'
+import {withAuthRedirectComponent} from '../../../hoc/AuthRedirect'
 import Profile from './Profile'
 
-class ProfileComponentApi extends React.Component{
-	
+class ClassProfileComponent extends React.Component{
 	componentDidMount(){
-		this.props.getProfile(this.props.match.params.userId)
+		let userId
+		this.props.match.params.userId ? userId = this.props.match.params.userId : userId = 2 
+		console.log(userId)
+		this.props.getProfile(userId)
 	}
 
 	render(){
 		return(
 			<>
-				<Profile auth = {this.props.auth}/>
+				<Profile />
 			</>
 		)
 	}
@@ -21,10 +24,13 @@ class ProfileComponentApi extends React.Component{
 }
 
 const mapStateToProps = (state) => ({
-	state: state.profile,
-	auth: state.auth.isAuth
+	profile: state.profile
 })
 
-const ProfileWR = withRouter(ProfileComponentApi)
+let AuthRedirectComponent = withAuthRedirectComponent(ClassProfileComponent)
+
+const ProfileWR = withRouter(AuthRedirectComponent)
+
 const ProfileComponent = connect(mapStateToProps, {getProfile})(ProfileWR)
+
 export default ProfileComponent

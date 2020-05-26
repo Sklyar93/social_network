@@ -24,7 +24,7 @@ export const getApi ={
 		return axiosCreate
 		.get(Url)
 		.then((response) => {
-			return response
+			return response.data
 		})
 	},
 	Profile(userId){

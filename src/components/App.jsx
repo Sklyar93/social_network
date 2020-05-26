@@ -4,7 +4,7 @@ import {Route, BrowserRouter} from 'react-router-dom'
 import HeaderComponent from './header/HeaderComponent'
 import Navbar from './navbar/Navbar'
 import ProfileComponent from './contents/profile/ProfileComponent'
-import Messages from './contents/message/Messages'
+import MessagesComponent from './contents/message/MessagesComponent'
 import Users from './contents/users/Users'
 import AuthComponent from './contents/auth/AuthComponent'
 import AuthNavlink from './contents/auth/AuthNavlink'
@@ -18,7 +18,7 @@ const App = () => {
 			<Navbar />
 			<div className="contents">
 				<Route path='/profile/:userId?' render = {() => <ProfileComponent />}/>
-				<Route path='/messages' render={() => <Messages />}/>
+				<Route path='/messages' render={() => <MessagesComponent />}/>
 				<Route path='/users' render={() => <Users />} />
 				<Route path='/auth' render={() => <AuthComponent />} />
 				<Route path='/singin' render={() => 
