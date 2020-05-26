@@ -11,6 +11,7 @@ import {
 			getNoFollow
 		} 
 	from '../../../redux/users-reduser'
+import {compose} from 'redux'	
 import {connect} from 'react-redux'
 import {withAuthRedirectComponent} from '../../../hoc/AuthRedirect'
 import UsersItems from './components/UsersItems'
@@ -61,9 +62,8 @@ const mapStateToProps = (state) => ({
 	users: state.users
 })
 
-const withAuthRedirect = withAuthRedirectComponent(UsersItemsApiComponent)
 
-const Users = connect(mapStateToProps, 
+const Users = compose(connect(mapStateToProps, 
 {
 	currentPageChange, 
 	totalUserCount, 
@@ -74,7 +74,6 @@ const Users = connect(mapStateToProps,
 	getUsers,
 	getFollow,
 	getNoFollow
-}
-)(withAuthRedirect)
+}),withAuthRedirectComponent)(UsersItemsApiComponent)
 
 export default Users

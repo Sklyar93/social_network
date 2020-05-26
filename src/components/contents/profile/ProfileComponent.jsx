@@ -1,4 +1,5 @@
 import React from 'react'
+import {compose} from 'redux'
 import {connect} from 'react-redux'
 import {withRouter, Redirect} from 'react-router-dom'
 import {getProfile} from '../../../redux/profile-reduser'
@@ -27,10 +28,7 @@ const mapStateToProps = (state) => ({
 	profile: state.profile
 })
 
-let AuthRedirectComponent = withAuthRedirectComponent(ClassProfileComponent)
 
-const ProfileWR = withRouter(AuthRedirectComponent)
-
-const ProfileComponent = connect(mapStateToProps, {getProfile})(ProfileWR)
+const ProfileComponent = compose(connect(mapStateToProps, {getProfile}), withRouter,withAuthRedirectComponent)(ClassProfileComponent)
 
 export default ProfileComponent
