@@ -1,15 +1,15 @@
 import React from 'react'
+import StatusProfile from './components/StatusProfile'
+
 
 const InfoProfile = (props) => {
+
 	return(
-		<div className ="profile__infoprofile">
+		<div className = "profile__infoprofile">
 			<h3>Информация о профиле</h3>
-			<h4>Фамилия {props.surname}</h4>
-			<h4>Имя {props.name}</h4>
-			<h4>Отчество</h4>
-			<h4>Возраст</h4>
-			<h4>Город</h4>
-			<h4>Подробная информация</h4>
+			<h4>Логин пользователя {props.profile.profileArray.map(p => p.fullName)}</h4>
+			<h4>id пользователя {props.profile.profileArray.map(p => p.userId)}</h4>
+			<StatusProfile status = {props.status} updatesStatus = {props.updatesStatus} />
 		</div>
 	)
 }

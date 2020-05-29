@@ -36,7 +36,7 @@ class UsersItemsApiComponent extends React.Component{
 		this.props.getNoFollow(id)
 	}
 
-
+	
 	render(){
 		return(
 		<div className="users">
@@ -49,6 +49,7 @@ class UsersItemsApiComponent extends React.Component{
 			/>
 			<UsersItems 
 				users = {this.props.users} 
+				status = {this.props.status}
 				followed = {this.followed}
 				nofollowed = {this.nofollowed}
 				isLoader = {this.props.users.isLoader}
@@ -59,7 +60,8 @@ class UsersItemsApiComponent extends React.Component{
 }
 
 const mapStateToProps = (state) => ({
-	users: state.users
+	users: state.users,
+	status: state.status.status
 })
 
 

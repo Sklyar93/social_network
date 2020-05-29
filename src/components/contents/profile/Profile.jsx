@@ -1,6 +1,6 @@
 import React from 'react'
 import AvatarProfile from './components/avatarprofile/AvatarProfile'
-import InfoProfile from './components/infoprofile/InfoProfile'
+import InfoProfileCompose from './components/infoprofile/InfoProfileCompose'
 import PostsProfile from './components/postsprofile/PostsProfile'
 
 const Profile = (props) => {
@@ -8,7 +8,7 @@ const Profile = (props) => {
 	return(
 		<div className="profile">
 			<AvatarProfile />
-			<InfoProfile />
+			<InfoProfileCompose />
 			<PostsProfile />
 		</div>
 	)

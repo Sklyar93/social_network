@@ -6,12 +6,10 @@ import Loader from '../../../grid/loader/Loader'
 const UsersItems = (props) => {
 
 	const followed = (id) =>{
-		console.log('подписка' + id)
 		return props.followed(id)
 	}
 
 	const nofollowed = (id) =>{
-		console.log('отписка' + id)
 		props.nofollowed(id)
 	}
 
@@ -30,9 +28,7 @@ const UsersItems = (props) => {
 					</div>
 					<div className="user__info">
 						<h3>{u.name}</h3>
-						<h4>Возраст:</h4>
-						<h4>Страна: </h4>
-						<h4>Город: </h4>
+						<h3>Статус: {u.status}</h3>
 					</div>
 				</div>
 			)}

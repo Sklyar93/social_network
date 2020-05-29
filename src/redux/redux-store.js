@@ -3,13 +3,15 @@ import profileReduser from './profile-reduser'
 import messageReduser from './message-reduser'
 import userReduser from './users-reduser'
 import authReduser from './auth-reduser'
+import statusReduser from './status-reduser'
 import thunk from 'redux-thunk'
 
 let redusers = combineReducers({
 	messages: messageReduser,
 	profile: profileReduser,
 	users: userReduser,
-	auth: authReduser
+	auth: authReduser,
+	status: statusReduser
 })
 
 
