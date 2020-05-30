@@ -1,4 +1,4 @@
-import {getApi} from '../api/api'
+import {getApi, postApi} from '../api/api'
 const SET_USER_AUTH = 'SET_USER_AUTH'
 
 let  initialState = {
@@ -19,6 +19,8 @@ const authReduser = (state = initialState, action) => {
 			email: action.email,
 			isAuth: action.isAuth
 	})
+
+
 
 	switch(action.type) {
 		case SET_USER_AUTH :
@@ -43,7 +45,6 @@ export const getUserAuth = () => {
 		getApi
 		.Header()
 		.then((data) => {
-			console.log(data.resultCode)
 			if(data.resultCode == 0){
 			let {id, login, email} = data.data
 			dispatch(setUserAuth(id, login, email, true))
@@ -51,5 +52,18 @@ export const getUserAuth = () => {
 		})
 	}
 }
+
+export 	const singInAuth = (email, password, rememberMe, captcha) => {
+	return (dispatch) => {
+		postApi
+		.SingIn(email, password, rememberMe, captcha)
+		.then(response => {
+			if(response.data.resultCode == 0){
+				dispatch(getUserAuth())
+			}
+		})
+	}
+}
+
 
 export default authReduser

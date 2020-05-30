@@ -1,21 +1,23 @@
 import {combineReducers, createStore, applyMiddleware} from 'redux'
-import profileReduser from './profile-reduser'
-import messageReduser from './message-reduser'
+import profileReducer from './profile-reduсer'
+import messageReducer from './message-reducer'
 import userReduser from './users-reduser'
 import authReduser from './auth-reduser'
 import statusReduser from './status-reduser'
 import thunk from 'redux-thunk'
+import {reducer as formReducer} from 'redux-form'
 
-let redusers = combineReducers({
-	messages: messageReduser,
-	profile: profileReduser,
+let reducers = combineReducers({
+	messages: messageReducer,
+	profile: profileReducer,
 	users: userReduser,
 	auth: authReduser,
-	status: statusReduser
+	status: statusReduser,
+	form: formReducer
 })
 
 
-let store = createStore(redusers, applyMiddleware(thunk))
+let store = createStore(reducers, applyMiddleware(thunk))
 
 window.store = store
 export default store

@@ -36,6 +36,7 @@ class StatusProfile extends React.Component{
 
         console.log("componentDidUpdate")
     }
+
 	render(){
 		if(this.state.editMode){
 		return(
@@ -48,7 +49,7 @@ class StatusProfile extends React.Component{
 		return(
 			<>
 				<input autoFocus = {true} onChange = {this.onStatusChange}  value = {this.state.status} />
-				<button onClick = {this.updatesStatus}>Изменить статус</button>
+				<button onClick = {this.updatesStatus}>Добавить статус</button>
 			</>
 		)
 		}

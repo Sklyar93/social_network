@@ -5,7 +5,6 @@ const MessageItem = (props) => {
 		<div classname="messages__messageitem">
 			<p>{props.text}</p>
 		</div>
-
 	)
 }
 export default MessageItem

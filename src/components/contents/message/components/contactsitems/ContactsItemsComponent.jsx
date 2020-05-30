@@ -1,6 +1,18 @@
 import React from 'react'
 import {connect} from 'react-redux'
-import ContactItemComponent from './components/ContactItemComponent'
+import ContactItem from './ContactItem'
+
+
+const ContactItemComponent = (props) => {
+	let contactItem = props.contactsArray.map( c => <ContactItem key ={c.id} id = {c.id} name = {c.name} img = {c.img} />)
+	
+	return(
+		<div className="messages__contactsitems">
+			{contactItem}
+		</div>
+	)
+}
+
 
 
 const mapStateToProps = (state) => ({

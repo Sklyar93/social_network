@@ -1,27 +1,35 @@
 import React from 'react'
 import ReactDom from 'react-dom'
-
+import {getLogOut} from 
+import ButtonLogOut from './singin/ButtonLogOut'
+import ButtonSingIn from './singin/ButtonSingIn'
 
 const SingIn = (props) => {
 	
 	return(
 		<div className = "header__singin">
-		{props.auth.isAuth 
+		{props.isAuth
 
 			? 
 			<>
 				<div>{props.auth.login}</div>
-				<button>Выйти</button>
+				<ButtonLogOut />
 			</>
 			
 			:
 			
 			<>
-				<button>Войти</button>
-				<button>Регистрация</button>
+				<ButtonSingIn />
 			</>
 		}
 		</div>
 	)
 }
+
+const mapStateToProps = (state) => ({
+	isAuth: state.auth.isAuth
+})
+
+connect(mapStateToProps, {getLogOut})(SingIn)
+
 export default SingIn

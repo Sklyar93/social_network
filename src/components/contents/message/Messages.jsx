@@ -1,14 +1,14 @@
 import React from 'react'
 import ContactsItemsComponent from './components/contactsitems/ContactsItemsComponent'
-import MessagesItemsComponent from './components/messageitems/MessagesItemsComponent'
-import AddMessagesComponent from './components/addmessage/AddMessagesComponent'
+import MessagesItemsConnect from './components/messageitems/MessagesItemsConnect'
+import AddMessagesConnect from './components/addmessage/AddMessagesConnect'
 
 const Messages = () => {
 	return(
 		<div className="messages">
 			<ContactsItemsComponent />
-			<MessagesItemsComponent />
-			<AddMessagesComponent />
+			<MessagesItemsConnect />
+			<AddMessagesConnect />
 		</div>
 	)
 }

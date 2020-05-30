@@ -1,7 +1,6 @@
 import {getApi} from '../api/api'
 
-const ADD_POST = 'ADD-POST'
-const NEW_TEXT_CHANGE_POST = 'NEW-TEXT-CHANGE-POST'
+const SET_NEW_POST = 'SET_NEW_POST'
 const SET_PROFILE = 'SET_PROFILE'
 const IS_LOADER = 'IS_LOADER'
 
@@ -10,26 +9,21 @@ let initialState = {
 	],
 	postsArray: [
 	],
-	textChangePost: 'Добавить пост',
 	isLoader: true
 }	
 
-const profileReduser = (state = initialState, action) => {
+const profileReducer = (state = initialState, action) => {
 
-	const addPost = (addPostText) =>({
+	const setNewPost = (text) =>({
 		...state,
 		postsArray: [
 			...state.postsArray,
 			{
-				text: addPostText
+				text: action.text
 			}
 		],
-		textChangePost: ''
 	})
-	const changePost = (textChangePost) =>({
-		...state,
-		textChangePost
-	})
+
 
 	const setProfile = (profileArray, textPosts) =>({
 		...state,
@@ -47,12 +41,9 @@ const profileReduser = (state = initialState, action) => {
 	})
 
 	switch(action.type){
-		case ADD_POST: {
-			return addPost(action.addPostText)
+		case SET_NEW_POST: {
+			return setNewPost(action.text)
 		}		
-		case NEW_TEXT_CHANGE_POST: {
-			return changePost(action.textChange)
-		}
 		case SET_PROFILE: {
 			return setProfile(action.profile, action.post)
 		}
@@ -65,15 +56,11 @@ const profileReduser = (state = initialState, action) => {
 }
 
 
-export const addPost = (addPostText) => ({
-	type: ADD_POST,
-	addPostText
+export const setNewPost = (text) => ({
+	type: SET_NEW_POST,
+	text
 })
 
-export const changePost = (textChange) => ({
-	type: NEW_TEXT_CHANGE_POST,
-	textChange
-})
 
 export const setProfile = (profile,post) => ({
 	type: SET_PROFILE,
@@ -97,4 +84,10 @@ export const getProfile = (userId = 2) => {
 	}
 }
 
-export default profileReduser
+export const getNewPost = (text) => {
+	return (dispatch) => {
+		dispatch(setNewPost(text))
+	}
+}
+
+export default profileReducer
