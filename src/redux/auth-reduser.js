@@ -1,4 +1,4 @@
-import {getApi, postApi} from '../api/api'
+import {getApi, postApi, deleteApi} from '../api/api'
 const SET_USER_AUTH = 'SET_USER_AUTH'
 
 let  initialState = {
@@ -64,6 +64,18 @@ export 	const singInAuth = (email, password, rememberMe, captcha) => {
 		})
 	}
 }
+deleteApi
 
+export const getLogOut = () =>{
+	return (dispatch) =>{
+		deleteApi
+		.LogOut()
+		.then((response) => {
+				debugger
+				dispatch(setUserAuth(null, null, null, false))
+				console.log('sadd')
+		})
+	}
+}
 
 export default authReduser

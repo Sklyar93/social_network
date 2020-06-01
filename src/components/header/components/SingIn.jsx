@@ -1,11 +1,20 @@
 import React from 'react'
 import ReactDom from 'react-dom'
-import {getLogOut} from 
+import {connect} from 'react-redux'
+import {getLogOut} from '../../../redux/auth-reduser'
 import ButtonLogOut from './singin/ButtonLogOut'
 import ButtonSingIn from './singin/ButtonSingIn'
 
-const SingIn = (props) => {
+const Singin = (props) => {
 	
+	const onSubmit = () => {
+	debugger
+		return(
+			props.getLogOut()
+		)
+	}
+	
+
 	return(
 		<div className = "header__singin">
 		{props.isAuth
@@ -13,7 +22,7 @@ const SingIn = (props) => {
 			? 
 			<>
 				<div>{props.auth.login}</div>
-				<ButtonLogOut />
+				<ButtonLogOut onSubmit = {onSubmit}/>
 			</>
 			
 			:
@@ -30,6 +39,5 @@ const mapStateToProps = (state) => ({
 	isAuth: state.auth.isAuth
 })
 
-connect(mapStateToProps, {getLogOut})(SingIn)
 
-export default SingIn
+export default connect(mapStateToProps, {getLogOut})(Singin)

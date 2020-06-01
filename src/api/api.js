@@ -113,6 +113,19 @@ export const deleteApi = {
 					}
 				}	
 			)
+	},
+	LogOut(){
+		let deleteApiUrl=`https://social-network.samuraijs.com/api/1.0/auth/login`
+		return axios.delete(
+				deleteApiUrl, 
+				{
+					withCredentials: true,
+					headers:  {
+						"API-KEY": "bfce57c6-9639-4416-9a17-8ff3148b4918"
+					}
+				}	
+			)
+
 	}
 }
 
