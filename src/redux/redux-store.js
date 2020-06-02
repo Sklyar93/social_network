@@ -4,6 +4,7 @@ import messageReducer from './message-reducer'
 import userReduser from './users-reduser'
 import authReduser from './auth-reduser'
 import statusReduser from './status-reduser'
+import appReducer from './app-reducer'
 import thunk from 'redux-thunk'
 import {reducer as formReducer} from 'redux-form'
 
@@ -13,7 +14,8 @@ let reducers = combineReducers({
 	users: userReduser,
 	auth: authReduser,
 	status: statusReduser,
-	form: formReducer
+	form: formReducer,
+	app: appReducer
 })
 
 

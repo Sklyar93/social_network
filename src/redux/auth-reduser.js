@@ -1,4 +1,5 @@
 import {getApi, postApi, deleteApi} from '../api/api'
+import {stopSubmit} from 'redux-form'
 const SET_USER_AUTH = 'SET_USER_AUTH'
 
 let  initialState = {
@@ -42,24 +43,30 @@ export const setUserAuth = (id, login, email,isAuth) => ({
 
 export const getUserAuth = () => {
 	return (dispatch) => {
-		getApi
+		return getApi
 		.Header()
 		.then((data) => {
-			if(data.resultCode == 0){
+			console.log(data)
+			if(data.resultCode === 0){
 			let {id, login, email} = data.data
 			dispatch(setUserAuth(id, login, email, true))
+			}else{
+				dispatch(setUserAuth(null, null, null, false))
 			}	
 		})
 	}
 }
 
-export 	const singInAuth = (email, password, rememberMe, captcha) => {
+export 	const singInAuth = (email, password, rememberMe = false, captcha = true) => {
 	return (dispatch) => {
 		postApi
 		.SingIn(email, password, rememberMe, captcha)
 		.then(response => {
-			if(response.data.resultCode == 0){
+			if(response.data.resultCode === 0){
 				dispatch(getUserAuth())
+			}else{
+				let messageError = response.data.messages.length > 0 ? response.data.messages[0] : 'Ошибка' 
+				dispatch(stopSubmit("singIn", {_error: messageError}))				
 			}
 		})
 	}
@@ -71,9 +78,10 @@ export const getLogOut = () =>{
 		deleteApi
 		.LogOut()
 		.then((response) => {
-				debugger
+			if(response.data.resultCode === 0){
 				dispatch(setUserAuth(null, null, null, false))
-				console.log('sadd')
+			}
+				
 		})
 	}
 }

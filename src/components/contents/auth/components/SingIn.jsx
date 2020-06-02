@@ -1,43 +1,29 @@
 import React from 'react'
-import {connect} from 'react-redux'
 import {reduxForm, Field} from 'redux-form'
-import {singInAuth} from '../../../../redux/auth-reduser'
+import {email, Input} from '../../../../utils/validation/form/validations'
 
-const SingInForm = (props) => {
+
+const SingIn = (props) => {
+	const{handleSubmit, pristine, reset, submitting, error} = props
+
 	return (
 		<form onSubmit = {props.handleSubmit}>
 			<h4>Войти в профиль</h4>
-			<Field name = 'login' placeholder = 'Введите логин' component = 'input' />
-			<Field name = 'password' type='password' placeholder = 'Введите пароль' component = 'input' />
+			<Field name = 'login' placeholder = 'Введите логин' type= 'email'  validate = {[email]} component = {Input} />
+			<Field name = 'password' type='password' placeholder = 'Введите пароль'  component = {Input} />
 			<div>
-				<Field name = 'rememberMe' type="checkbox" component = 'input' />
+				<Field name = 'rememberMe' type="checkbox" component = {Input} />
 				<span>Запомнить меня</span>
 			</div>
-			<button>Войти</button>
+			<div>
+				{error && <span className = 'erorrInput'>{error}</span>}
+			</div>
+			<button disabled = {pristine || submitting}>Войти</button>
 		</form>
 	)
 }
 
-const SingInComponent = reduxForm({
+export default reduxForm({
 	form: 'singIn'
-})(SingInForm)
+})(SingIn)
 
-
-const SingIns = (props) => {
-	
-	const onSubmit = (formData) => {
-		props.singInAuth(formData.login, formData.password, formData.remeberMe, true)
-	}
-
-	return(
-		<>
-			<SingInComponent onSubmit = {onSubmit}/>
-		</>
-	)
-}
-const mapStateToProps = (state) => ({
-	state: state
-})
-
-const SingIn = connect(mapStateToProps, {singInAuth})(SingIns)
-export default SingIn

@@ -1,11 +1,11 @@
 import React from 'react'
-import SingIn from './components/SingIn' 
+import SingInComponent from './components/SingInComponent' 
 
 
 const Auth = (props) => {
 	return (
 		<div>
-			<SingIn />
+			<SingInComponent />
 		</div>
 	)
 } 

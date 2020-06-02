@@ -1,17 +1,18 @@
 import React from 'react'
 import {reduxForm, Field} from 'redux-form'
+import {maxLength, Input} from '../../../../../utils/validation/form/validations'
 
-class AddMessage extends React.Component{
+const maxlenght20 = maxLength(20)
 
-	render(){
-		return(
-		<form onSubmit = {this.props.handleSubmit}>
-			<Field name= 'newMessage' component = 'textarea' onChange = {this.onMessageChange} />
-			<button>Отправить сообщение</button>
+const AddMessage = (props) => {
+	const { handleSubmit, pristine, reset, submitting } = props
+	return(
+		<form onSubmit = {handleSubmit}>
+			<Field name= 'newMessage' component = {Input} validate = {[maxlenght20]} type="text"/>
+			<button disabled={pristine || submitting} >Отправить сообщение</button>
 		</form>
 	)
 
-	}
 }
 
 const AddMessageForm = reduxForm({

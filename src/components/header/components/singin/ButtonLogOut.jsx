@@ -1,14 +1,17 @@
 import React from 'react'
-import {reduxForm} from 'redux-form'
+
 
 const ButtonLogOut = (props) => {
+
+	const getLogOut = () => {
+		props.getLogOut()
+	}
+
 	return(
-		<form onSubmit ={props.hadleSubmit}>
-			<button>Выйти из профиля</button>
-		</form>
+		<button onClick = {getLogOut}>Выйти из профиля</button>
 	)
 }
 
 
 
-export default reduxForm({form: 'logout'})(ButtonLogOut)
+export default ButtonLogOut

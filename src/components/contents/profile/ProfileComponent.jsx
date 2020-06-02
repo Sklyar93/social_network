@@ -11,7 +11,7 @@ import Profile from './Profile'
 class ClassProfileComponent extends React.Component{
 	componentDidMount(){
 		let userId
-		this.props.match.params.userId ? userId = this.props.match.params.userId : userId = 8062
+		this.props.match.params.userId ? userId = this.props.match.params.userId : userId = this.props.authuserId
 		
 		this.props.getProfile(userId)
 		this.props.getStatus(userId)
@@ -28,7 +28,8 @@ class ClassProfileComponent extends React.Component{
 }
 
 const mapStateToProps = (state) => ({
-	profile: state.profile
+	profile: state.profile,
+	authuserId: state.auth.id
 })
 
 

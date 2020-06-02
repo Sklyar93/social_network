@@ -76,6 +76,6 @@ const Users = compose(connect(mapStateToProps,
 	getUsers,
 	getFollow,
 	getNoFollow
-}),withAuthRedirectComponent)(UsersItemsApiComponent)
+}))(UsersItemsApiComponent)
 
 export default Users

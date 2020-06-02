@@ -5,14 +5,8 @@ import {getLogOut} from '../../../redux/auth-reduser'
 import ButtonLogOut from './singin/ButtonLogOut'
 import ButtonSingIn from './singin/ButtonSingIn'
 
-const Singin = (props) => {
+const SingIn = (props) => {
 	
-	const onSubmit = () => {
-	debugger
-		return(
-			props.getLogOut()
-		)
-	}
 	
 
 	return(
@@ -22,7 +16,7 @@ const Singin = (props) => {
 			? 
 			<>
 				<div>{props.auth.login}</div>
-				<ButtonLogOut onSubmit = {onSubmit}/>
+				<ButtonLogOut getLogOut = {props.getLogOut}/>
 			</>
 			
 			:
@@ -40,4 +34,4 @@ const mapStateToProps = (state) => ({
 })
 
 
-export default connect(mapStateToProps, {getLogOut})(Singin)
+export default connect(mapStateToProps, {getLogOut})(SingIn)
