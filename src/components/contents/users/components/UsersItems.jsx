@@ -7,15 +7,21 @@ const UsersItems = (props) => {
 
 	const followed = (id) =>{
 		return props.followed(id)
+		console.log(props.followDisabledSelector)
 	}
 
 	const nofollowed = (id) =>{
 		props.nofollowed(id)
+		console.log(props.followDisabledSelector)
+	}
+
+	const followDisabledSelector = (uid) => {
+		return props.followDisabledSelector.some(id => id === uid)
 	}
 
 	return(
 		<>
-			{props.users.usersArray.map(u => 
+			{props.usersArray.map(u => 
 				<div className="user">
 					<div className="user__avatar">
 						{
@@ -24,7 +30,7 @@ const UsersItems = (props) => {
 							<img src={u.photos.small != null ? u.photos.small : noneAvatar}/>
 						</NavLink>
 						}
-						{u.followed ? <button disabled = {props.users.followDisabledArray.some(id => id === u.id)} onClick = {() => {nofollowed(u.id)}}>Отписаться</button> : <button disabled = {props.users.followDisabledArray.some(id => id === u.id)} onClick = {() => {followed(u.id)}}>Подписаться</button>}
+						{props.isAuth && (u.followed ? <button disabled = {followDisabledSelector(u.id)}  onClick = {() => {nofollowed(u.id)}}>Отписаться</button> : <button disabled = {followDisabledSelector(u.id)} onClick = {() => {followed(u.id)}}>Подписаться</button>)}
 					</div>
 					<div className="user__info">
 						<h3>{u.name}</h3>

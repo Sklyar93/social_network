@@ -6,14 +6,15 @@ import {getProfile} from '../../../redux/profile-reduсer'
 import {getStatus} from '../../../redux/status-reduser'
 import {withAuthRedirectComponent} from '../../../hoc/AuthRedirect'
 import {withLoaderRedirectProfile} from '../../../hoc/withLoaderRedirect'
+import {authIdUser} from '../../../redux/selectors/auth-selectors'
 import Profile from './Profile'
 
 class ClassProfileComponent extends React.Component{
 	componentDidMount(){
 		let userId
-		this.props.match.params.userId ? userId = this.props.match.params.userId : userId = this.props.authuserId
-		
-		this.props.getProfile(userId)
+		this.props.match.params.userId ? userId = this.props.match.params.userId : userId = this.props.authIdUser
+		let isMe = userId === this.props.authIdUser ? true : false
+		this.props.getProfile(userId, isMe)
 		this.props.getStatus(userId)
 	}
 
@@ -28,8 +29,7 @@ class ClassProfileComponent extends React.Component{
 }
 
 const mapStateToProps = (state) => ({
-	profile: state.profile,
-	authuserId: state.auth.id
+	authIdUser: authIdUser(state)
 })
 
 

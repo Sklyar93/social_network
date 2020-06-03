@@ -9,7 +9,8 @@ let initialState = {
 	],
 	postsArray: [
 	],
-	isLoader: true
+	isLoader: true,
+	isMe: false
 }	
 
 const profileReducer = (state = initialState, action) => {
@@ -25,14 +26,15 @@ const profileReducer = (state = initialState, action) => {
 	})
 
 
-	const setProfile = (profileArray, textPosts) =>({
+	const setProfile = (profileArray, textPosts, isMe) =>({
 		...state,
 		profileArray: [profileArray],
 		postsArray: [
 		...state.postsArray,
 		{
 			text: textPosts
-		}]
+		}],
+		isMe: isMe
 	})
 
 	const isLoader = (bool) => ({
@@ -45,7 +47,7 @@ const profileReducer = (state = initialState, action) => {
 			return setNewPost(action.text)
 		}		
 		case SET_PROFILE: {
-			return setProfile(action.profile, action.post)
+			return setProfile(action.profile, action.post, action.isMe)
 		}
 		case IS_LOADER: {
 			return isLoader(action.bool)
@@ -62,10 +64,11 @@ export const setNewPost = (text) => ({
 })
 
 
-export const setProfile = (profile,post) => ({
+export const setProfile = (profile,post, isMe) => ({
 	type: SET_PROFILE,
 	profile,
-	post	
+	post,
+	isMe	
 })
 
 export const isLoader = (bool) => ({
@@ -73,12 +76,13 @@ export const isLoader = (bool) => ({
 	bool
 })
 
-export const getProfile = (userId = 2) => {
+export const getProfile = (userId,isMe) => {
 	return (dispatch) => {
 		dispatch(isLoader(true))
 		getApi.Profile(userId)
 		.then(data => {
-			dispatch(setProfile(data, data.lookingForAJobDescription))
+			dispatch(setProfile(data, data.lookingForAJobDescription, isMe))
+
 			dispatch(isLoader(false))	
 		})
 	}

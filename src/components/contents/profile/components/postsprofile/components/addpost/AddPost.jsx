@@ -3,6 +3,7 @@ import {reduxForm, Field} from 'redux-form'
 import {maxLength, Input} from '../../../../../../../utils/validation/form/validations'
 
 let maxlength = maxLength(300)
+
 const AddPost = (props) => {
 	const{handleSubmit, pristine, reset, submitting} = props
 	return(

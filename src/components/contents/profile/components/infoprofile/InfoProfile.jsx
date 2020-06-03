@@ -9,7 +9,7 @@ const InfoProfile = (props) => {
 			<h3>Информация о профиле</h3>
 			<h4>Логин пользователя {props.profile.profileArray.map(p => p.fullName)}</h4>
 			<h4>id пользователя {props.profile.profileArray.map(p => p.userId)}</h4>
-			<StatusProfile status = {props.status} updatesStatus = {props.updatesStatus} />
+			<StatusProfile isMeProfile = {props.isMeProfile} status = {props.status} updatesStatus = {props.updatesStatus} />
 		</div>
 	)
 }

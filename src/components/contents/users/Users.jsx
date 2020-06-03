@@ -13,6 +13,9 @@ import {
 	from '../../../redux/users-reduser'
 import {compose} from 'redux'	
 import {connect} from 'react-redux'
+import {selectorStatusUsers, isLoaderUsers , currentPageUsers, totalCountUsers, usersArray, 
+pageSize, followDisabledSelector} from '../../../redux/selectors/users-selectors'
+import {isAuth} from '../../../redux/selectors/auth-selectors'
 import {withAuthRedirectComponent} from '../../../hoc/AuthRedirect'
 import UsersItems from './components/UsersItems'
 import UsersPages from './components/UsersPages'
@@ -21,11 +24,12 @@ import UsersPages from './components/UsersPages'
 class UsersItemsApiComponent extends React.Component{
 	
 	componentDidMount(){
-		this.props.getUsers(this.props.users.pageSize, 1)
+	console.log(this.props.followDisabledSelector)
+		this.props.getUsers(this.props.pageSize, 1)
 	}
-
+	
 	currentPageChange = (page) => {
-		this.props.getUsers(this.props.users.pageSize, page)
+		this.props.getUsers(this.props.pageSize, page)
 	}
 
 	followed = (id) => {
@@ -41,18 +45,22 @@ class UsersItemsApiComponent extends React.Component{
 		return(
 		<div className="users">
 			<UsersPages 
-				users = {this.props.users} 
+				pageSize = {this.props.pageSize}
+				currentPage = {this.props.currentPage}
+				totalCount = {this.props.totalCount}
 				currentPageChange = {this.currentPageChange}
 				totalUserCount = {this.props.totalUserCount} 
 				currentPageMinys = {this.props.currentPageMinys}
 				currentPagePlus = {this.props.currentPagePlus}
 			/>
 			<UsersItems 
-				users = {this.props.users} 
+				followDisabledSelector = {this.props.followDisabledSelector}
+				usersArray = {this.props.usersArray}
+				isLoader = {this.props.isLoader}
 				status = {this.props.status}
 				followed = {this.followed}
 				nofollowed = {this.nofollowed}
-				isLoader = {this.props.users.isLoader}
+				isAuth = {this.props.isAuth}
 			/>
 		</div>
 		)
@@ -60,8 +68,14 @@ class UsersItemsApiComponent extends React.Component{
 }
 
 const mapStateToProps = (state) => ({
-	users: state.users,
-	status: state.status.status
+	followDisabledSelector: followDisabledSelector(state),
+	pageSize: pageSize(state),
+	currentPage: currentPageUsers(state),
+	totalCount: totalCountUsers(state),
+	isLoader: isLoaderUsers(state),
+	usersArray: usersArray(state),
+	status: selectorStatusUsers(state),
+	isAuth: isAuth(state) 
 })
 
 

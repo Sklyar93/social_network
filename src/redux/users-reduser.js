@@ -87,14 +87,15 @@ const userReduser = (state = initialState, action) => {
 		isLoader: action.bool
 	})
 
-	const followDisabled = (id, bool) => ({
-		...state,
-		followDisabledArray: action.bool 
-		?
-		[...state.followDisabledArray, action.id]
-		: 
-		state.followDisabledArray.filter(id => id != action.id)
-	})
+	const followDisabled = (id, bool) => {
+		console.log(state.followDisabledArray.map(id=> id))
+		return {...state,
+				followDisabledArray: action.bool 
+				?
+				[...state.followDisabledArray, action.id]
+				: 
+				state.followDisabledArray.filter(id => id != action.id)}
+	}
 
 	switch(action.type){
 		case FOLLOWED :
@@ -184,8 +185,10 @@ export const getUsers = (pageSize, page) => {
 export const getFollow = (id) => {
 	return (dispatch) => {
 		dispatch(followDisabled(id, true))
+
 		postApi.Users(id)
 		.then(response => {
+
             if (response.data.resultCode == 0) {
                 dispatch(followed(id))
             }

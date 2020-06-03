@@ -33,8 +33,6 @@ class StatusProfile extends React.Component{
                 status: this.props.status
             });
         }
-
-        console.log("componentDidUpdate")
     }
 
 	render(){
@@ -42,14 +40,15 @@ class StatusProfile extends React.Component{
 		return(
 			<>
 				<h4>Статус: {this.state.status}</h4>
-				<button onClick = {this.statusInfo}>Изменить статус</button>
+				{this.props.isMeProfile && <button onClick = {this.statusInfo}>Изменить статус</button>}
 			</>
 		)
 		}else{
 		return(
 			<>
 				<input autoFocus = {true} onChange = {this.onStatusChange}  value = {this.state.status} />
-				<button onClick = {this.updatesStatus}>Добавить статус</button>
+				{this.props.isMeProfile && <button onClick = {this.updatesStatus}>Добавить статус</button>}
+				
 			</>
 		)
 		}
