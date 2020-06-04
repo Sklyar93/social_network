@@ -18,6 +18,5 @@ const mapStateToProps = (state) => ({
 	messageArray: state.messages.messageArray
 })
 
-const MessagesItemsConnect = connect(mapStateToProps)(MessagesItemsComponent)
 
-export default MessagesItemsConnect
+export default connect(mapStateToProps)(MessagesItemsComponent)

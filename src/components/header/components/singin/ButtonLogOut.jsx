@@ -8,7 +8,7 @@ const ButtonLogOut = (props) => {
 	}
 
 	return(
-		<button onClick = {getLogOut}>Выйти из профиля</button>
+		<button  disabled = {props.BtnDisabled} onClick = {getLogOut}>Выйти из профиля</button>
 	)
 }
 

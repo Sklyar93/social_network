@@ -4,6 +4,7 @@ import {connect} from 'react-redux'
 import {getLogOut} from '../../../redux/auth-reduser'
 import ButtonLogOut from './singin/ButtonLogOut'
 import ButtonSingIn from './singin/ButtonSingIn'
+import {BtnDisabled, isAuth} from '../../../redux/selectors/auth-selectors'
 
 const SingIn = (props) => {
 	
@@ -16,7 +17,7 @@ const SingIn = (props) => {
 			? 
 			<>
 				<div>{props.auth.login}</div>
-				<ButtonLogOut getLogOut = {props.getLogOut}/>
+				<ButtonLogOut getLogOut = {props.getLogOut} BtnDisabled = {props.BtnDisabled}/>
 			</>
 			
 			:
@@ -30,7 +31,8 @@ const SingIn = (props) => {
 }
 
 const mapStateToProps = (state) => ({
-	isAuth: state.auth.isAuth
+	isAuth: isAuth(state),
+	BtnDisabled: BtnDisabled(state)
 })
 
 

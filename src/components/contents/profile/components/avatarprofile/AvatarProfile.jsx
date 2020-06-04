@@ -1,21 +1,19 @@
 import React from 'react'
 import Avatar from './avatar/Avatar'
 import {connect} from 'react-redux'
+import { profileArray, profileIsLoader }  from '../../../../../redux/selectors/profile-selectors'
 
-class AvatarProfileContainer extends React.Component{
-	render(){
-		return(
-			<div className="profile__avatar">
-				<Avatar state = {this.props.state}/>
-			</div>
-		)
-	}
+const AvatarProfile = (props) => {
+	return(
+		<div className="profile__avatar">
+			<Avatar profileArray = {props.profileArray}/>
+		</div>
+	)
 }
 
 const mapStateToProps = (state) => ({
-	state: state.profile
+	profileArray: profileArray(state),
+	profileIsLoader: profileIsLoader(state)
 })
 
-const AvatarProfile = connect(mapStateToProps)(AvatarProfileContainer)
-
-export default AvatarProfile
+export default connect(mapStateToProps)(AvatarProfile)

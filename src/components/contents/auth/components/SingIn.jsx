@@ -5,7 +5,6 @@ import {email, Input} from '../../../../utils/validation/form/validations'
 
 const SingIn = (props) => {
 	const{handleSubmit, pristine, reset, submitting, error} = props
-
 	return (
 		<form onSubmit = {props.handleSubmit}>
 			<h4>Войти в профиль</h4>
@@ -18,7 +17,7 @@ const SingIn = (props) => {
 			<div>
 				{error && <span className = 'erorrInput'>{error}</span>}
 			</div>
-			<button disabled = {pristine || submitting}>Войти</button>
+			<button disabled = {pristine || submitting || props.BtnDisabled}>Войти</button>
 		</form>
 	)
 }

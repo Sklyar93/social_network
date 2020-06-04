@@ -5,3 +5,7 @@ export const isAuth = (state) => {
 export const authIdUser = (state) => {
 	return state.auth.id
 }
+
+export const BtnDisabled = (state) => {
+	return state.auth.BtnDisabled
+}

@@ -21,7 +21,6 @@ const mapStateToProps = (state) => ({
 	status: status(state)
 })
 
-const InfoProfileCompose = compose(connect(mapStateToProps, {updatesStatus}) )(InfoProfileComponent)
+export default compose(connect(mapStateToProps, {updatesStatus}) )(InfoProfileComponent)
 
 
-export default InfoProfileCompose

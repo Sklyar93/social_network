@@ -1,57 +1,41 @@
-import React from 'react'
+import React, {useState, useEffect}from 'react'
 
-class StatusProfile extends React.Component{
-	state = {
-		editMode: true,
-		status: this.props.status
-	}
+const  StatusProfile = (props) =>  {
+	
+    let[editMode, setEditMode] = useState(true)
+    let[status, setStatus] = useState(props.status)
 
-	statusInfo = () =>{
-		this.setState({
-			editMode: false
-		})
-	}
-
-
-	updatesStatus = () => {
-		this.props.updatesStatus(this.state.status)
-		this.setState({
-			editMode: true
-		})
-	}
-
-	onStatusChange = (e) => {
-		this.setState({
-			status: e.currentTarget.value
-		})
-	}
-
-	componentDidUpdate(prevProps, prevState) {
-
-        if (prevProps.status !== this.props.status) {
-            this.setState({
-                status: this.props.status
-            });
-        }
+    const statusInfo = () => {
+    	setEditMode(false)
     }
 
-	render(){
-		if(this.state.editMode){
-		return(
-			<>
-				<h4>Статус: {this.state.status}</h4>
-				{this.props.isMeProfile && <button onClick = {this.statusInfo}>Изменить статус</button>}
-			</>
-		)
-		}else{
-		return(
-			<>
-				<input autoFocus = {true} onChange = {this.onStatusChange}  value = {this.state.status} />
-				{this.props.isMeProfile && <button onClick = {this.updatesStatus}>Добавить статус</button>}
-				
-			</>
-		)
-		}
+    const updatesStatus = () => {
+    	setEditMode(true)
+    }
+
+    const onStatusChange = (e) => {
+    	setStatus(e.currentTarget.value)
+    }
+
+    useEffect(() => {
+    	setStatus(props.status)
+    },[props.status])
+
+	if(editMode){
+	return(
+		<>
+			<h4>Статус: {status}</h4>
+			{props.isMeProfile && <button onClick = {statusInfo}>Изменить статус</button>}
+		</>
+	)
+	}else{
+	return(
+		<>
+			<input autoFocus = {true} onChange = {onStatusChange}  value = {status} />
+			{props.isMeProfile && <button onClick = {updatesStatus}>Добавить статус</button>}
+			
+		</>
+	)
 	}
 	
 }

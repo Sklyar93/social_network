@@ -9,7 +9,7 @@ import {withLoaderRedirectProfile} from '../../../hoc/withLoaderRedirect'
 import {authIdUser} from '../../../redux/selectors/auth-selectors'
 import Profile from './Profile'
 
-class ClassProfileComponent extends React.Component{
+class ProfileComponent extends React.Component{
 	componentDidMount(){
 		let userId
 		this.props.match.params.userId ? userId = this.props.match.params.userId : userId = this.props.authIdUser
@@ -33,6 +33,5 @@ const mapStateToProps = (state) => ({
 })
 
 
-const ProfileComponent = compose(connect(mapStateToProps, {getProfile, getStatus}), withRouter, withAuthRedirectComponent)(ClassProfileComponent)
+export default  compose(connect(mapStateToProps, {getProfile, getStatus}), withRouter, withAuthRedirectComponent)(ProfileComponent)
 
-export default ProfileComponent

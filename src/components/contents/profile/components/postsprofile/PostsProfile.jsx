@@ -1,11 +1,11 @@
 import React from 'react'
-import AddPostCompose from './components/addpost/AddPostCompose'
+import AddPostComponent from './components/addpost/AddPostComponent'
 import PostsComponent from './components/post/PostsComponent'
 
 const PostsProfile = () => {
 	return(
 		<div className="profile__postsprofile postsprofile">
-			<AddPostCompose />
+			<AddPostComponent />
 			<PostsComponent />
 		</div>
 	)

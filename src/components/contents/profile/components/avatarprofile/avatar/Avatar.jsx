@@ -6,8 +6,8 @@ const Avatar = (props) => {
 	return(
 		<>
 			{
-			props.state.profileArray.map(s =>
-			props.state.isLoader ? <Loader /> : 	
+			props.profileArray.map(s =>
+			props.profileIsLoader ? <Loader /> : 	
 			<img src = {s.photos.small != null ? s.photos.small : noneAvatar} />
 			)
 			}

@@ -2,20 +2,22 @@ import React from 'react'
 import {connect} from 'react-redux'
 import {singInAuth} from '../../../../redux/auth-reduser'
 import SingIn from './SingIn'
+import {BtnDisabled} from '../../../../redux/selectors/auth-selectors'
 
 
 const SingInComponent = (props) => {
 	
 	const onSubmit = (formData) => {
 		props.singInAuth(formData.login, formData.password, formData.remeberMe)
-		console.log(props.history)
 	}
-
 	return(
-		<SingIn onSubmit = {onSubmit}/>
+		<SingIn BtnDisabled = {props.BtnDisabled} onSubmit = {onSubmit}/>
 	)
 }
 
+const mapStateToProps = (state) => ({
+	BtnDisabled: BtnDisabled(state)	
+})
 
 	
-export default connect(null, {singInAuth})(SingInComponent)
+export default connect(mapStateToProps, {singInAuth})(SingInComponent)
