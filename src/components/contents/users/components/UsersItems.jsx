@@ -3,43 +3,46 @@ import {NavLink} from 'react-router-dom'
 import noneAvatar from '../../../../img/grid/noneAvatar.png';
 import Loader from '../../../grid/loader/Loader'
 
-const UsersItems = (props) => {
+class UsersItems extends React.Component{
 
-	const followed = (id) =>{
-		return props.followed(id)
-		console.log(props.followDisabledSelector)
+	followed = (id) =>{
+		return this.props.followed(id)
 	}
 
-	const nofollowed = (id) =>{
-		props.nofollowed(id)
-		console.log(props.followDisabledSelector)
+	nofollowed = (id) =>{
+		this.props.nofollowed(id)
 	}
 
-	const followDisabledSelector = (uid) => {
-		return props.followDisabledSelector.some(id => id === uid)
+	followDisabledSelector = (uid) => {
+		return this.props.followDisabledSelector.some(id => id === uid)
 	}
 
-	return(
-		<>
-			{props.usersArray.map(u => 
-				<div className="user">
-					<div className="user__avatar">
-						{
-						props.isLoader ? <Loader /> 
-						: <NavLink to ={'/profile/'+u.id}>
-							<img src={u.photos.small != null ? u.photos.small : noneAvatar}/>
-						</NavLink>
-						}
-						{props.isAuth && (u.followed ? <button disabled = {followDisabledSelector(u.id)}  onClick = {() => {nofollowed(u.id)}}>Отписаться</button> : <button disabled = {followDisabledSelector(u.id)} onClick = {() => {followed(u.id)}}>Подписаться</button>)}
+
+
+	render(){
+	console.log('UsersItems')
+		return(
+			<>
+				{this.props.usersArray.map(u => 
+					<div className="user">
+						<div className="user__avatar">
+							{
+							this.props.isLoader ? <Loader /> 
+							: <NavLink to ={'/profile/'+u.id}>
+								<img src={u.photos.small != null ? u.photos.small : noneAvatar}/>
+							</NavLink>
+							}
+							{this.props.isAuth && (u.followed ? <button disabled = {this.followDisabledSelector(u.id)}  onClick = {() => {this.nofollowed(u.id)}}>Отписаться</button> : <button disabled = {this.followDisabledSelector(u.id)} onClick = {() => {this.followed(u.id)}}>Подписаться</button>)}
+						</div>
+						<div className="user__info">
+							<h3>{u.name}</h3>
+							<h3>Статус: {u.status}</h3>
+						</div>
 					</div>
-					<div className="user__info">
-						<h3>{u.name}</h3>
-						<h3>Статус: {u.status}</h3>
-					</div>
-				</div>
-			)}
-		</>
-	)
+				)}
+			</>
+		)
+	}
 }
 
 export default UsersItems

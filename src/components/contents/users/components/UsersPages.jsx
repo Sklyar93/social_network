@@ -21,7 +21,7 @@ const UsersPages = (props) => {
 	for(let i = props.currentPage; i <= props.currentPage + 5; i++){
 		countPageArray[i-1] = i
 	}
-
+	console.log('UsersPages')
 	return(
 		<>
 			{props.currentPage >= 10 && <button onClick = {currentPageMinys}>Предыдущие 10</button>}

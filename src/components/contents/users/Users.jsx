@@ -24,7 +24,6 @@ import UsersPages from './components/UsersPages'
 class UsersItemsApiComponent extends React.Component{
 	
 	componentDidMount(){
-	console.log(this.props.followDisabledSelector)
 		this.props.getUsers(this.props.pageSize, 1)
 	}
 	
@@ -39,7 +38,8 @@ class UsersItemsApiComponent extends React.Component{
 	nofollowed = (id) => {
 		this.props.getNoFollow(id)
 	}
-
+		
+	
 	
 	render(){
 		return(
